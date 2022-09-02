@@ -1,22 +1,32 @@
 import { Route, Routes } from "react-router-dom";
 import FeedBackContextWrapper from "./components/Context/FeedBackContext";
 import Home from "./pages/home/Home";
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import AddFeedBackPage from "./pages/AddFeedBack/Add";
 
 function App() {
   return (
-    <FeedBackContextWrapper>
+    <Container>
+      <FeedBackContextWrapper>
       <GlobalStyle />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="add" element={<AddFeedBackPage />} />
       </Routes>
     </FeedBackContextWrapper>
+    </Container>
   );
 }
 
 export default App;
+
+const Container = styled.div`
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
 
 const GlobalStyle = createGlobalStyle`
   
