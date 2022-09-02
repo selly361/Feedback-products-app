@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import FeedBackContextWrapper from "./components/Context/FeedBackContext";
 import Home from "./pages/home/Home";
 import { createGlobalStyle } from "styled-components";
+import AddFeedBackPage from "./pages/AddFeedBack/Add";
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <GlobalStyle />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="add" element={<AddFeedBackPage />} />
       </Routes>
     </FeedBackContextWrapper>
   );
@@ -29,6 +31,7 @@ body, #root {
   background-color: #f2f4ff;
   min-height: 100vh;
   width: 100vw;
+  overflow-x: hidden;
 
   
 }

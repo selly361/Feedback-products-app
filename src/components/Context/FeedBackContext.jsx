@@ -12,9 +12,7 @@ feedBackData.productRequests.map((product) =>
 export const FeedbacksProvider = createContext();
 
 const FeedBackContextWrapper = ({ children }) => {
-  const [productsData, setProductsData] = useState(
-    () => JSON.parse(localStorage.getItem("products")) || feedBackData
-  );
+  const [productsData, setProductsData] = useState(() => JSON.parse(localStorage.getItem("products")) || feedBackData);
 
   const [filter, setFilter] = useState({
     category: "all",
@@ -23,12 +21,16 @@ const FeedBackContextWrapper = ({ children }) => {
 
   const handleFilteredData = () => {
     let copy = productsData.productRequests;
-    copy = copy.filter(product => product.status !== "planned" && product.status !== "live" && product.status !== "in-progress")
-   
+    copy = copy.filter(
+      (product) =>
+        product.status !== "planned" &&
+        product.status !== "live" &&
+        product.status !== "in-progress"
+    );
 
-     if(filter.category !== "all") {
+    if (filter.category !== "all") {
       copy = copy.filter((product) => product.category == filter.category);
-    } 
+    }
 
     if (filter.filterType == "+votes") {
       copy = copy.sort((a, b) => b.upvotes - a.upvotes);
@@ -40,22 +42,20 @@ const FeedBackContextWrapper = ({ children }) => {
       copy = copy.sort((a, b) => a.comments.length - b.comments.length);
     }
 
-    setFilteredData(copy)
-
+    setFilteredData(copy);
   };
-
 
   const [filteredData, setFilteredData] = useState();
 
   useEffect(() => {
-    handleFilteredData()
-  console.log(filteredData)
-    
-  }, [filter])
+    handleFilteredData();
+    console.log(feedBackData.productRequests);
+  }, [filter, productsData]);
+
 
   return (
     <FeedbacksProvider.Provider
-      value={{ productsData, setProductsData, setFilter, filter, filteredData }}
+      value={{ productsData, setProductsData, setFilter, filter, filteredData, handleFilteredData }}
     >
       {children}
     </FeedbacksProvider.Provider>
