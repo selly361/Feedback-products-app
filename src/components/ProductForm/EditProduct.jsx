@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import Select from "react-select";
 import styled from "styled-components";
 import { ReactComponent as EditIcon } from "../../assets/icons/edit-icon.svg";
-import { FeedbacksProvider } from "../../Context/FeedBackContext";
 import { Link, useNavigate } from "react-router-dom";
 
 const categoryOptions = [
@@ -13,13 +12,12 @@ const categoryOptions = [
   { value: "bug", label: "Bug" },
 ];
 
-
 const statusOptions = [
-    { value: "suggestion", label: "Suggestion" },
-    { value: "planned", label: "Planned" },
-    { value: "in-progress", label: "In-progress" },
-    { value: "live", label: "Live" },
-  ];
+  { value: "suggestion", label: "Suggestion" },
+  { value: "planned", label: "Planned" },
+  { value: "in-progress", label: "In-progress" },
+  { value: "live", label: "Live" },
+];
 
 export const StyledForm = styled.form`
   width: 95%;
@@ -48,7 +46,7 @@ export const FeedBackTitleInput = styled.input`
   height: 45px;
   border-radius: 10px;
   padding: 0 20px;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   color: #647196;
 
   &:focus,
@@ -61,7 +59,7 @@ export const FeedBackTitleInput = styled.input`
 export const DescriptInput = styled(FeedBackTitleInput)`
   height: 80px;
   resize: none;
-  padding: 20px;
+  padding: 10px;
 
   &:focus {
     outline: unset;
@@ -113,19 +111,65 @@ const EditButton = styled(CancelButton)`
   }
 `;
 
-const EditProduct = () => {
-  const { setProductsData, productsData, handleFilteredData } =
-    useContext(FeedbacksProvider);
-
-  const [feedbackTitle, setFeedbackTitle] = useState();
-  const [description, setDescription] = useState();
-  const [categoryOption, setCategoryOption] = useState();
-  const [statusOption, setStatusOption] = useState();
+const EditProduct = ({
+  upvotes,
+  title,
+  category,
+  id,
+  comments,
+  hover,
+  active,
+  description,
+  status,
+  handleFilteredData,
+  productDetails,
+  setProductsData,
+  productsData,
+}) => {
+  const [feedbackTitle, setFeedbackTitle] = useState(title);
+  const [descriptionData, setDescriptionData] = useState(description);
+  const [categoryOption, setCategoryOption] = useState(() =>
+    categoryOptions.find((c) => c.value === category)
+  );
+  const [statusOption, setStatusOption] = useState(() =>
+    statusOptions.find((c) => c.value === status)
+  );
 
   const Navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    let copy = productsData;
+
+    let updatedProduct = {
+      id,
+      title: feedbackTitle,
+      upvotes,
+      status: statusOption.value,
+      category: categoryOption.value,
+      active,
+      description: descriptionData,
+      comments,
+    };
+
+    let index = copy.productRequests.findIndex((p) => p.id === id);
+    copy.productRequests[index] = updatedProduct;
+
+    setProductsData(copy);
+    localStorage.setItem("products", JSON.stringify(copy));
+    handleFilteredData();
+    Navigate(-1);
+  };
+
+  const handleDelete = () => {
+    let copy = productsData;
+
+    copy.productRequests = copy.productRequests.filter((p) => p.id !== id);
+    setProductsData(copy);
+    localStorage.setItem("products", JSON.stringify(copy));
+    handleFilteredData();
+    Navigate('/');
   };
 
   return (
@@ -158,11 +202,13 @@ const EditProduct = () => {
       </p>
       <DescriptInput
         as="textarea"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
+        value={descriptionData}
+        onChange={(e) => setDescriptionData(e.target.value)}
       />
       <ButtonContainer>
-        <DeleteButton>Delete</DeleteButton>
+        <DeleteButton type="button" onClick={handleDelete}>
+          Delete
+        </DeleteButton>
         <div className="edit-and-cancel-button">
           <CancelButton type="button" onClick={() => Navigate("/")}>
             Cancel

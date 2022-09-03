@@ -16,7 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/add" element={<AddFeedBackPage />} />
-        <Route path="/edit" element={<EditFeedBackPage />} />
+        <Route path="/edit/:id" element={<EditFeedBackPage />} />
         <Route path="/:id" element={<ProductPage />} />
       </Routes>
     </FeedBackContextWrapper>
