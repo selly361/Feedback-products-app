@@ -42,7 +42,7 @@ const ProductPage = () => {
     <StyledProductPage>
       <TopSection>
         <BackButton />
-        <EditFeedbackButton>Edit Feedback</EditFeedbackButton>
+        <EditFeedbackButton to="/edit">Edit Feedback</EditFeedbackButton>
       </TopSection>
        <Product {...productDetails} hover={false} />
     </StyledProductPage>

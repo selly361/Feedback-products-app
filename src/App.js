@@ -4,6 +4,9 @@ import Home from "./pages/home/Home";
 import styled, { createGlobalStyle } from "styled-components";
 import AddFeedBackPage from "./pages/AddFeedBack/Add";
 import ProductPage from "./pages/ProductPage/ProductPage";
+import EditFeedBackPage from "./pages/EditFeedBack/Edit";
+
+
 
 function App() {
   return (
@@ -13,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/add" element={<AddFeedBackPage />} />
+        <Route path="/edit" element={<EditFeedBackPage />} />
         <Route path="/:id" element={<ProductPage />} />
       </Routes>
     </FeedBackContextWrapper>
@@ -24,10 +28,12 @@ export default App;
 
 const Container = styled.div`
   min-height: 100vh;
+  padding: 3rem;
   width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
+
 `
 
 const GlobalStyle = createGlobalStyle`
