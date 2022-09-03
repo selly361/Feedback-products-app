@@ -46,7 +46,7 @@ const AddFeedBackContainer = styled.div`
 
 `
 
-const AddFeedBack = styled(Link)`
+export const AddFeedBack = styled.a`
   font-size: 1rem;
   padding: .6rem 1rem;
   background-color: #ad1fea;
@@ -102,7 +102,7 @@ const ProductHeader = ({ filter, setFilter, productRequests }) => {
         />
       </FilterContainer>
       <AddFeedBackContainer>
-        <AddFeedBack to="/add">+ Add FeedBack</AddFeedBack>
+        <AddFeedBack as={Link} to="/add">+ Add FeedBack</AddFeedBack>
       </AddFeedBackContainer>
     </Container>
   );

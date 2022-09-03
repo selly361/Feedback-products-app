@@ -1,8 +1,9 @@
 import { Route, Routes } from "react-router-dom";
-import FeedBackContextWrapper from "./components/Context/FeedBackContext";
+import FeedBackContextWrapper from "./Context/FeedBackContext";
 import Home from "./pages/home/Home";
 import styled, { createGlobalStyle } from "styled-components";
 import AddFeedBackPage from "./pages/AddFeedBack/Add";
+import ProductPage from "./pages/ProductPage/ProductPage";
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
       <GlobalStyle />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="add" element={<AddFeedBackPage />} />
+        <Route path="/add" element={<AddFeedBackPage />} />
+        <Route path="/:id" element={<ProductPage />} />
       </Routes>
     </FeedBackContextWrapper>
     </Container>

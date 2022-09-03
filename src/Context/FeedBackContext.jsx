@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { v4 as uuid } from "uuid";
-import data from "../../assets/data.json";
+import data from "../assets/data.json";
 
 let feedBackData = data;
 

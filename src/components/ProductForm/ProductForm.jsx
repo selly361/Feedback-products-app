@@ -3,7 +3,7 @@ import Select from "react-select";
 import styled from "styled-components";
 import { ReactComponent as AddIcon } from "../../assets/icons/add-icon.svg";
 import { v4 as uuid } from "uuid";
-import { FeedbacksProvider } from "../Context/FeedBackContext";
+import { FeedbacksProvider } from "../../Context/FeedBackContext";
 import { Link, useNavigate }  from 'react-router-dom'
 
 const options = [
@@ -14,7 +14,7 @@ const options = [
   { value: "bug", label: "Bug" },
 ];
 
-const StyledForm = styled.form`
+export const StyledForm = styled.form`
   width: 90%;
   display: flex;
   flex-flow: column;
@@ -31,11 +31,11 @@ const StyledForm = styled.form`
   }
 `;
 
-const StyledAddIcon = styled(AddIcon)`
+export const StyledAddIcon = styled(AddIcon)`
   transform: translate(0, -50%);
 `;
 
-const FeedBackTitleInput = styled.input`
+export const FeedBackTitleInput = styled.input`
   background-color: #f2f4ff;
   width: 100%;
   height: 45px;
@@ -51,7 +51,7 @@ const FeedBackTitleInput = styled.input`
   }
 `;
 
-const DescriptInput = styled(FeedBackTitleInput)`
+export const DescriptInput = styled(FeedBackTitleInput)`
   height: 80px;
   resize: none;
   padding: 20px;
@@ -61,7 +61,7 @@ const DescriptInput = styled(FeedBackTitleInput)`
   }
 `;
 
-const ButtonContainer = styled.div`
+export const ButtonContainer = styled.div`
   width: 100%;
   height: 50px;
   display: flex;
@@ -133,7 +133,7 @@ const ProductForm = () => {
     setProductsData(copy);
     localStorage.setItem("products", JSON.stringify(copy))
     handleFilteredData()
-    Navigate("/")
+    Navigate(-1)
   };
 
   return (
@@ -163,7 +163,7 @@ const ProductForm = () => {
         onChange={(e) => setDescription(e.target.value)}
       />
       <ButtonContainer>
-        <button type="button">Cancel</button>
+        <button type="button" onClick={() => Navigate('/')}>Cancel</button>
         <button type="submit">Add Feedback</button>
       </ButtonContainer>
     </StyledForm>

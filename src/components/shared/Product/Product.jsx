@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { ReactComponent as ArrowIcon } from "../../../assets/icons/arrow-icon.svg";
 import { ReactComponent as CommentIcon } from "../../../assets/icons/comment-icon.svg";
-import { FeedbacksProvider } from "../../Context/FeedBackContext";
+import { FeedbacksProvider } from "../../../Context/FeedBackContext";
 
 const StyledProduct = styled.div`
   display: flex;
@@ -13,6 +13,11 @@ const StyledProduct = styled.div`
   border-radius: 10px;
   align-items: center;
   justify-content: center;
+
+  &:hover {
+    border: ${(props) => (props.hover ? "1px solid #ad1fea" : "none")};
+    cursor: ${(props) => (props.hover ? "pointer" : "initial")};
+  }
 `;
 
 const VoteButton = styled.button`
@@ -83,9 +88,9 @@ const Description = styled.div`
 
 const CommentLength = styled.div`
   display: flex;
-  gap: .5rem;
+  gap: 0.5rem;
   align-items: center;
-`
+`;
 
 const Product = ({
   upvotes,
@@ -97,9 +102,10 @@ const Product = ({
   active,
   description,
 }) => {
-  const { setProductsData, productsData , handleFilteredData} = useContext(FeedbacksProvider);
+  const { setProductsData, productsData, handleFilteredData } =
+    useContext(FeedbacksProvider);
 
-  const handleVote = () => {
+  const handleVote = ({ hover }) => {
     let copy = productsData;
 
     let product = copy.productRequests.find((product) => product.id === id);
@@ -109,16 +115,15 @@ const Product = ({
 
     localStorage.setItem("products", JSON.stringify(copy));
     setProductsData(copy);
-    handleFilteredData()
-    
+    handleFilteredData();
   };
 
   return (
-    <StyledProduct>
+    <StyledProduct hover={hover ? "true" : ""}>
       <ProductInformationContainer>
         <ProductInformation>
-          <VoteButton active={active ? "true" : null} onClick={handleVote}>
-            <StyledArrow active={active ? "true" : null} />
+          <VoteButton active={active ? "true" : ""} onClick={handleVote}>
+            <StyledArrow active={active ? "true" : ""} />
             <h3>{upvotes}</h3>
           </VoteButton>
           <Description>
