@@ -73,6 +73,7 @@ export const ButtonContainer = styled.div`
   justify-content: space-between;
   gap: 1rem;
   align-items: center;
+  margin-top: 1rem;
 
   .edit-and-cancel-button {
     display: flex;
@@ -175,7 +176,7 @@ const EditProduct = ({
   return (
     <StyledForm onSubmit={handleSubmit}>
       <StyledEditIcon />
-      <h2>Edit 'Add tags for solutions'</h2>
+      <h2>Edit '{title}'</h2>
       <h5>Feedback Title</h5>
       <p>Add a short, descriptive headline</p>
       <FeedBackTitleInput
@@ -210,7 +211,7 @@ const EditProduct = ({
           Delete
         </DeleteButton>
         <div className="edit-and-cancel-button">
-          <CancelButton type="button" onClick={() => Navigate("/")}>
+          <CancelButton type="button" onClick={() => Navigate(-1)}>
             Cancel
           </CancelButton>
           <EditButton type="submit">Save Changes</EditButton>
