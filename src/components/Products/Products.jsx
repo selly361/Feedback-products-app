@@ -4,6 +4,7 @@ import styled from "styled-components";
 import ProductHeader from "./ProductHeader/ProductHeader";
 import { FeedbacksProvider } from "../../Context/FeedBackContext";
 import { Link } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 
 const Container = styled.div`
   width: 60vw;
@@ -25,12 +26,10 @@ const Products = () => {
         filter={filter}
         productRequests={productsData.productRequests}
       />
-      {filteredData &&
-        filteredData.map((data) => (
-          <Link to={`/${data.id}`} key={data.id}>
-            <Product {...data} hover={true} />
-          </Link>
-        ))}
+      <AnimatePresence>
+        {filteredData &&
+          filteredData.map((data) => <Product {...data} hover={true} />)}
+      </AnimatePresence>
     </Container>
   );
 };

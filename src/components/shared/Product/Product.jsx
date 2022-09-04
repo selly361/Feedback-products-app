@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { ReactComponent as ArrowIcon } from "../../../assets/icons/arrow-icon.svg";
 import { ReactComponent as CommentIcon } from "../../../assets/icons/comment-icon.svg";
 import { FeedbacksProvider } from "../../../Context/FeedBackContext";
+import { motion } from "framer-motion";
 
-const StyledProduct = styled.div`
+const StyledProduct = styled(motion.div)`
   display: flex;
   align-items: center;
   background-color: white;
@@ -105,7 +107,10 @@ const Product = ({
   const { setProductsData, productsData, handleFilteredData } =
     useContext(FeedbacksProvider);
 
-  const handleVote = ({ hover }) => {
+  const Navigate = useNavigate();
+
+  const handleVote = (e) => {
+    e.stopPropagation()
     let copy = productsData;
 
     let product = copy.productRequests.find((product) => product.id === id);
@@ -119,7 +124,13 @@ const Product = ({
   };
 
   return (
-    <StyledProduct hover={hover ? "true" : ""}>
+    <StyledProduct
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, transition: { duration: 1 } }}
+      exit={{ opacity: 0, transition: { duration: 1 } }}
+      onClick={(e) => Navigate(`/${id}`)}
+      hover={hover ? "true" : ""}
+    >
       <ProductInformationContainer>
         <ProductInformation>
           <VoteButton active={active ? "true" : ""} onClick={handleVote}>
