@@ -5,10 +5,9 @@ import styled from "styled-components";
 
 const StyledHeader = styled.header`
   width: 250px;
-  height: 80vh;
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-template-columns: 1fr;
+  height: 82vh;
+  display: flex;
+  flex-flow: column;
   gap: 1rem;
   border-radius: 10px;
 `;
@@ -27,14 +26,12 @@ const TopSection = styled.section`
   padding: 1rem;
   color: white;
 
-
   h2 {
   }
 
   h4 {
     font-weight: 300;
   }
-
 `;
 
 const MiddleSection = styled.section`
@@ -141,20 +138,18 @@ const InProgressStatus = styled(PlannedStatus)``;
 
 const LiveStatus = styled(PlannedStatus)``;
 
-
 const StatusLength = styled.h3`
   color: #647196;
   font-size: 1.2rem;
-`
+`;
 
 const NavBar = () => {
   const { productsData, filter, setFilter } = useContext(FeedbacksProvider);
-  
-
 
   let roadmapsStatus = (status) => {
     let copy = productsData;
-    return copy.productRequests.filter((product) => product.status == status).length;
+    return copy.productRequests.filter((product) => product.status == status)
+      .length;
   };
   return (
     <StyledHeader>
@@ -165,37 +160,52 @@ const NavBar = () => {
       <MiddleSection>
         <FilterButton
           className={filter.category == "all" ? "active" : ""}
-          onClick={(e) => setFilter({ category: "all", filterType: filter.filterType })}
+          onClick={(e) =>
+            setFilter({ category: "all", filterType: filter.filterType })
+          }
         >
           All
         </FilterButton>
         <FilterButton
           className={filter.category == "ui" ? "active" : ""}
-          onClick={(e) => setFilter({ category: "ui", filterType: filter.filterType })}
+          onClick={(e) =>
+            setFilter({ category: "ui", filterType: filter.filterType })
+          }
         >
           UI
         </FilterButton>
         <FilterButton
           className={filter.category == "ux" ? "active" : ""}
-          onClick={(e) => setFilter({ category: "ux", filterType: filter.filterType })}
+          onClick={(e) =>
+            setFilter({ category: "ux", filterType: filter.filterType })
+          }
         >
           UX
         </FilterButton>
         <FilterButton
           className={filter.category == "enhancement" ? "active" : ""}
-          onClick={(e) => setFilter({ category: "enhancement", filterType: filter.filterType })}
+          onClick={(e) =>
+            setFilter({
+              category: "enhancement",
+              filterType: filter.filterType,
+            })
+          }
         >
           Enhancement
         </FilterButton>
         <FilterButton
           className={filter.category == "bug" ? "active" : ""}
-          onClick={(e) => setFilter({ category: "bug", filterType: filter.filterType })}
+          onClick={(e) =>
+            setFilter({ category: "bug", filterType: filter.filterType })
+          }
         >
           Bug
         </FilterButton>
         <FilterButton
           className={filter.category == "feature" ? "active" : ""}
-          onClick={(e) => setFilter({ category: "feature", filterType: filter.filterType })}
+          onClick={(e) =>
+            setFilter({ category: "feature", filterType: filter.filterType })
+          }
         >
           Feature
         </FilterButton>

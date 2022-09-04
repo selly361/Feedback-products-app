@@ -1,8 +1,8 @@
 {
   "currentUser": {
-    "image": "user-images/image-jesse.jpg",
-    "name": "Jesse Ronda",
-    "username": "jesse10930"
+    "image": "https://avatars.githubusercontent.com/u/104414846?s=400&u=6bb6117895563d71f81e202e17ab18c38581c85d&v=4",
+    "name": "MoreForBegs",
+    "username": "Aimerno"
   },
   "productRequests": [
     {
@@ -18,7 +18,7 @@
           "id": " 1",
           "content": "Awesome idea! Trying to find framework-specific projects within the hubs can be tedious",
           "user": {
-            "image": "user-images/image-suzanne.jpg",
+            "image": "https://product-feedback-app-ten.vercel.app/assets/user-images/image-suzanne.jpg",
             "name": "Suzanne Chang",
             "username": "upbeat1811"
           },
@@ -28,7 +28,7 @@
           "id": " 2",
           "content": "Please use fun, color-coded labels to easily identify them at a glance",
           "user": {
-            "image": "user-images/image-thomas.jpg",
+            "image": "https://product-feedback-app-ten.vercel.app/assets/user-images/image-thomas.jpg",
             "name": "Thomas Hood",
             "username": "brawnybrave"
           },
@@ -49,7 +49,7 @@
           "id": " 3",
           "content": "Also, please allow styles to be applied based on system preferences. I would love to be able to browse Frontend Mentor in the evening after my device’s dark mode turns on without the bright background it currently has.",
           "user": {
-            "image": "user-images/image-elijah.jpg",
+            "image": "https://product-feedback-app-ten.vercel.app/assets/user-images/image-elijah.jpg",
             "name": "Elijah Moss",
             "username": "hexagon.bestagon"
           },
@@ -59,7 +59,7 @@
           "id": " 4",
           "content": "Second this! I do a lot of late night coding and reading. Adding a dark theme can be great for preventing eye strain and the headaches that result. It’s also quite a trend with modern apps and  apparently saves battery life.",
           "user": {
-            "image": "user-images/image-james.jpg",
+            "image": "https://thirsty-clarke-9a6686.netlify.app/user-images/image-james.jpg",
             "name": "James Skinner",
             "username": "hummingbird1"
           },
@@ -68,21 +68,19 @@
               "content": "While waiting for dark mode, there are browser extensions that will also do the job. Search for 'dark theme' followed by your browser. There might be a need to turn off the extension for sites with naturally black backgrounds though.",
               "replyingTo": "hummingbird1",
               "user": {
-                "image": "user-images/image-anne.jpg",
+                "image": "https://thirsty-clarke-9a6686.netlify.app/user-images/image-anne.jpg",
                 "name": "Anne Valentine",
                 "username": "annev1990"
-              },
-              "replies": []
+              }
             },
             {
               "content": "Good point! Using any kind of style extension is great and can be highly customizable, like the ability to change contrast and brightness. I'd prefer not to use one of such extensions, however, for security and privacy reasons.",
               "replyingTo": "annev1990",
               "user": {
-                "image": "user-images/image-ryan.jpg",
+                "image": "https://thirsty-clarke-9a6686.netlify.app/user-images/image-ryan.jpg",
                 "name": "Ryan Welles",
                 "username": "voyager.344"
-              },
-              "replies": []
+              }
             }
           ]
         }
@@ -101,7 +99,7 @@
           "id": " 5",
           "content": "Much easier to get answers from devs who can relate, since they've either finished the challenge themselves or are in the middle of it.",
           "user": {
-            "image": "user-images/image-george.jpg",
+            "image": "https://thirsty-clarke-9a6686.netlify.app/user-images/image-george.jpg",
             "name": "George Partridge",
             "username": "soccerviewer8"
           },
@@ -122,7 +120,7 @@
           "id": " 6",
           "content": "Right now, there is no ability to add images while giving feedback which isn't ideal because I have to use another app to show what I mean",
           "user": {
-            "image": "user-images/image-javier.jpg",
+            "image": "https://thirsty-clarke-9a6686.netlify.app/user-images/image-javier.jpg",
             "name": "Javier Pollard",
             "username": "warlikeduke"
           },
@@ -132,7 +130,7 @@
           "id": " 7",
           "content": "Yes I'd like to see this as well. Sometimes I want to add a short video or gif to explain the site's behavior..",
           "user": {
-            "image": "user-images/image-roxanne.jpg",
+            "image": "https://thirsty-clarke-9a6686.netlify.app/user-images/image-roxanne.jpg",
             "name": "Roxanne Travis",
             "username": "peppersprime32"
           },
@@ -153,7 +151,7 @@
           "id": " 8",
           "content": "I also want to be notified when devs I follow submit projects on FEM. Is in-app notification also in the pipeline?",
           "user": {
-            "image": "user-images/image-victoria.jpg",
+            "image": "https://thirsty-clarke-9a6686.netlify.app/user-images/image-victoria.jpg",
             "name": "Victoria Mejia",
             "username": "arlen_the_marlin"
           },
@@ -162,11 +160,10 @@
               "content": "Bumping this. It would be good to have a tab with a feed of people I follow so it's easy to see what challenges they’ve done lately. I learn a lot by reading good developers' code.",
               "replyingTo": "arlen_the_marlin",
               "user": {
-                "image": "user-images/image-zena.jpg",
+                "image": "https://thirsty-clarke-9a6686.netlify.app/user-images/image-zena.jpg",
                 "name": "Zena Kelley",
                 "username": "velvetround"
-              },
-              "replies": []
+              }
             }
           ]
         },
@@ -174,7 +171,7 @@
           "id": " 9",
           "content": "I've been saving the profile URLs of a few people and I check what they’ve been doing from time to time. Being able to follow them solves that",
           "user": {
-            "image": "user-images/image-jackson.jpg",
+            "image": "https://thirsty-clarke-9a6686.netlify.app/user-images/image-jackson.jpg",
             "name": "Jackson Barker",
             "username": "countryspirit"
           },
@@ -231,18 +228,7 @@
       "active": false,
       "status": "planned",
       "description": "Sequenced projects for different goals to help people improve.",
-      "comments": [
-        {
-          "id": " 12",
-          "content": "Having a path through the challenges that I could follow would be brilliant! Sometimes I'm not sure which challenge would be the best next step to take. So this would help me navigate through them!",
-          "user": {
-            "image": "user-images/image-george.jpg",
-            "name": "George Partridge",
-            "username": "soccerviewer8"
-          },
-          "replies": []
-        }
-      ]
+      "comments": []
     },
     {
       "id": 9,
@@ -321,8 +307,7 @@
                 "image": "user-images/image-suzanne.jpg",
                 "name": "Suzanne Chang",
                 "username": "upbeat1811"
-              },
-              "replies": []
+              }
             }
           ]
         }

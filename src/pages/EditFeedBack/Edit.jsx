@@ -9,7 +9,7 @@ import { StyledMain } from "../home/Home";
 const Body = styled(StyledMain)``;
 
 const Container = styled.div`
-  width: 40vw;
+  width: 500px;
   height: 90vh;
   background-color: white;
   border-radius: 10px;
@@ -26,9 +26,9 @@ const EditFeedBackPage = () => {
   let productDetails = copy.productRequests.find((p) => p.id === id);
   return (
     <Body
-      initial={{ x: '60vw', opacity: 0 }}
-      animate={{ x: 0, opacity: 1, transition: { duration: 0.8 } }}
-      exit={{ x: '-60vw', opacity: 0, transition: { duration: 0.8 } }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
     >
       <Container>
         <EditProduct

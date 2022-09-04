@@ -49,7 +49,6 @@ const FeedBackContextWrapper = ({ children }) => {
 
   useEffect(() => {
     handleFilteredData();
-    console.log(feedBackData.productRequests);
   }, [filter, productsData]);
 
 

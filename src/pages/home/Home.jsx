@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export const StyledMain = styled(motion.main)`
   width: 100vw;
-  min-height: 100vh;
+  min-height: 103vh;
   display: flex;
   padding-top: 3rem;
   align-items: center;
@@ -18,15 +18,17 @@ const Container = styled.div`
   width: max-content;
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: 2rem;
+  gap: 3rem;
 `;
+
+
 
 export default function Home() {
   return (
     <StyledMain
-      initial={{ x: '60vw', opacity: 0 }}
-      animate={{ x: 0, opacity: 1, transition: { duration: 0.8 } }}
-      exit={{ x: '-60vw', opacity: 0, transition: { duration: 0.8 } }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, }}
+      exit={{ opacity: 0, }}
     >
       <Container>
         <NavBar />

@@ -103,6 +103,7 @@ const Product = ({
   hover,
   active,
   description,
+  animation
 }) => {
   const { setProductsData, productsData, handleFilteredData } =
     useContext(FeedbacksProvider);
@@ -110,7 +111,7 @@ const Product = ({
   const Navigate = useNavigate();
 
   const handleVote = (e) => {
-    e.stopPropagation()
+    e.stopPropagation();
     let copy = productsData;
 
     let product = copy.productRequests.find((product) => product.id === id);
@@ -123,11 +124,12 @@ const Product = ({
     handleFilteredData();
   };
 
+
+
+
   return (
     <StyledProduct
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1, transition: { duration: 1 } }}
-      exit={{ opacity: 0, transition: { duration: 1 } }}
+      {...animation}
       onClick={(e) => Navigate(`/${id}`)}
       hover={hover ? "true" : ""}
     >
@@ -145,7 +147,7 @@ const Product = ({
         </ProductInformation>
         <CommentLength>
           <CommentIcon />
-          <h3>{comments.length}</h3>
+          <h3>{comments && comments.length}</h3>
         </CommentLength>
       </ProductInformationContainer>
     </StyledProduct>

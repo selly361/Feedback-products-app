@@ -20,9 +20,9 @@ const Container = styled.div`
 const AddFeedBackPage = () => {
   return (
     <Body
-      initial={{ x: '60vw', opacity: 0 }}
-      animate={{ x: 0, opacity: 1, transition: { duration: 0.8 } }}
-      exit={{ x: '-60vw', opacity: 0, transition: { duration: 0.8 } }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, }}
+      exit={{ opacity: 0, }}
     >
       <Container>
         <ProductForm />
