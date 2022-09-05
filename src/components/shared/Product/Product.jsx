@@ -119,7 +119,7 @@ const Product = ({
 
     product.active ? (product.upvotes += 1) : (product.upvotes -= 1);
 
-    localStorage.setItem("products", JSON.stringify(copy));
+    sessionStorage.setItem("products", JSON.stringify(copy));
     setProductsData(copy);
     handleFilteredData();
   };

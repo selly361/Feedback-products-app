@@ -158,7 +158,7 @@ const EditProduct = ({
     copy.productRequests[index] = updatedProduct;
 
     setProductsData(copy);
-    localStorage.setItem("products", JSON.stringify(copy));
+    sessionStorage.setItem("products", JSON.stringify(copy));
     handleFilteredData();
     Navigate(-1);
   };
@@ -168,7 +168,7 @@ const EditProduct = ({
 
     copy.productRequests = copy.productRequests.filter((p) => p.id !== id);
     setProductsData(copy);
-    localStorage.setItem("products", JSON.stringify(copy));
+    sessionStorage.setItem("products", JSON.stringify(copy));
     handleFilteredData();
     Navigate('/');
   };

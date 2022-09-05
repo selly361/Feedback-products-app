@@ -4,7 +4,7 @@ import Home from "./pages/home/Home";
 import styled,{ createGlobalStyle } from "styled-components";
 import AddFeedBackPage from "./pages/AddFeedBack/Add";
 import ProductPage from "./pages/ProductPage/ProductPage";
-import EditFeedBackPage from "./pages/EditFeedBack/Edit";
+import EditFeedBackPage from "./pages/AddFeedBack/EditFeedBack/Edit";
 import { AnimatePresence } from "framer-motion";
 
 function App() {
@@ -55,10 +55,11 @@ const GlobalStyle = createGlobalStyle`
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Jost", sans-serif;
+
 }
 
 body, #root {
-  font-family: "Jost", sans-serif;
   background-color: #f2f4ff;
   min-height: 100vh;
   width: 100vw;

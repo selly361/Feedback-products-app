@@ -12,7 +12,7 @@ feedBackData.productRequests.map((product) =>
 export const FeedbacksProvider = createContext();
 
 const FeedBackContextWrapper = ({ children }) => {
-  const [productsData, setProductsData] = useState(() => JSON.parse(localStorage.getItem("products")) || feedBackData);
+  const [productsData, setProductsData] = useState(() => JSON.parse(sessionStorage.getItem("products")) || feedBackData);
 
   const [filter, setFilter] = useState({
     category: "all",

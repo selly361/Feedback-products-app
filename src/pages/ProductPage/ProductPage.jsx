@@ -111,8 +111,14 @@ const AddCommentForm = styled.form`
   }
 `;
 
+const NumberOfComments = styled.h2`
+  color: #3a4374;
+  font-size: 1.2rem;
+`;
+
 const ProductPage = () => {
-  const { productsData, setProductsData, handleFilteredData } = useContext(FeedbacksProvider);
+  const { productsData, setProductsData, handleFilteredData } =
+    useContext(FeedbacksProvider);
   const { id } = useParams();
 
   let copy = productsData;
@@ -125,16 +131,18 @@ const ProductPage = () => {
 
     let copiedProductsData = productsData;
 
-    copiedProductsData.productRequests.find((p) => p.id === id).comments.push({
-      id: uuid(),
-      content: content,
-      user: copy.currentUser,
-      replies: [],
-    });
+    copiedProductsData.productRequests
+      .find((p) => p.id === id)
+      .comments.push({
+        id: uuid(),
+        content: content,
+        user: copy.currentUser,
+        replies: [],
+      });
 
     setProductsData(copiedProductsData);
-    localStorage.setItem("products", JSON.stringify(copiedProductsData));
-    handleFilteredData()
+    sessionStorage.setItem("products", JSON.stringify(copiedProductsData));
+    handleFilteredData();
   };
 
   return (
@@ -152,7 +160,19 @@ const ProductPage = () => {
         </TopSection>
         <Product {...productDetails} hover={false} />
         <CommentContainer>
-          <Comment comments={productDetails.comments} />
+          <NumberOfComments>
+            {productDetails.comments.length} Comments
+          </NumberOfComments>
+          {productDetails &&
+            productDetails.comments.map((comment) => (
+              <Comment
+                productId={id}
+                productsData={productsData}
+                setProductsData={setProductsData}
+                handleFilteredData={handleFilteredData}
+                comment={comment}
+              />
+            ))}
         </CommentContainer>
         <AddCommentForm onSubmit={handleSubmit}>
           <h4>Add Comment</h4>

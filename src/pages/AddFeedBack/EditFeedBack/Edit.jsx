@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import EditProduct from "../../components/ProductForm/EditProduct";
+import EditProduct from "../../../components/ProductForm/EditProduct";
 import { useParams } from "react-router-dom";
-import { FeedbacksProvider } from "../../Context/FeedBackContext";
+import { FeedbacksProvider } from "../../../Context/FeedBackContext";
 import { motion } from "framer-motion";
-import { StyledMain } from "../home/Home";
+import { StyledMain } from "../../home/Home";
 
 const Body = styled(StyledMain)``;
 

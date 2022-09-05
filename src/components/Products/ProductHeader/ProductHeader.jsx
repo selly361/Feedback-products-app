@@ -24,11 +24,10 @@ const FilterContainer = styled.div`
   gap: 1rem;
   align-items: center;
 
-
   .Select {
     width: 200px;
   }
-  
+
   h5 {
     color: #f2f4ff;
     font-weight: 300;
@@ -38,17 +37,14 @@ const FilterContainer = styled.div`
   h3 {
     color: white;
     font-size: 1.1rem;
-
   }
 `;
 
-const AddFeedBackContainer = styled.div`
-
-`
+const AddFeedBackContainer = styled.div``;
 
 export const AddFeedBack = styled(Link)`
   font-size: 1rem;
-  padding: .6rem 1rem;
+  padding: 0.6rem 1rem;
   background-color: #ad1fea;
   border-radius: 10px;
   color: #f2f4ff;
@@ -57,15 +53,12 @@ export const AddFeedBack = styled(Link)`
 
   &:active {
     color: #f2f4ff;
-
   }
 
   &:hover {
     background-color: #c75af6;
   }
-`
-
-
+`;
 
 const options = [
   { value: "+votes", label: "Most Upvotes" },
@@ -73,10 +66,6 @@ const options = [
   { value: "+comments", label: "Most Comments" },
   { value: "-comments", label: "Least Comments" },
 ];
-
-
-
-
 
 const ProductHeader = ({ filter, setFilter, productRequests }) => {
   const [selectedOption, setSelectedOption] = useState({
@@ -92,7 +81,10 @@ const ProductHeader = ({ filter, setFilter, productRequests }) => {
     <Container>
       <FilterContainer>
         <BulbIcon />
-        <h3>{productRequests.filter(p => p.status === "suggestion").length} Suggestions</h3>
+        <h3>
+          {productRequests.filter((p) => p.status === "suggestion").length}{" "}
+          Suggestions
+        </h3>
         <h5>Sort by:</h5>
         <Select
           className="Select"
