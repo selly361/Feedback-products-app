@@ -13,7 +13,7 @@ const StyledHeader = styled.div`
       align-items: center;
       justify-content: center;
       width: 100vw;
-      height: 15vh;
+      height: 12vh;
       background: radial-gradient(
         128.88% 128.88% at 103.9% -10.39%,
         #e84d70 0,

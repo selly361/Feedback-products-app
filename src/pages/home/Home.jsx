@@ -14,7 +14,7 @@ export const StyledMain = styled(motion.main)`
 
   @media (max-width: 600px){
     padding-top: 0;
-
+    display: block;
   }
 `;
 
