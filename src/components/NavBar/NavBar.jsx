@@ -41,9 +41,16 @@ const TopSection = styled.section`
   h4 {
     font-weight: 300;
   }
+
+
+  @media (max-width: 600px){
+    & {
+     display: none;
+    }
+  }
 `;
 
-const MiddleSection = styled.section`
+export const SharedMiddleSection = styled.section`
   background-color: white;
   display: flex;
   gap: 1rem;
@@ -74,7 +81,7 @@ const FilterButton = styled.button`
   }
 `;
 
-const BottomSection = styled.section`
+export const SharedBottomSection = styled.section`
   padding: 1rem;
   background-color: white;
   display: flex;
@@ -151,7 +158,24 @@ const LiveStatus = styled(PlannedStatus)``;
 const StatusLength = styled.h3`
   color: #647196;
   font-size: 1.2rem;
+
+
 `;
+
+const MiddleSection = styled(SharedMiddleSection)`
+
+  @media (max-width: 600px){
+    display: none;
+  }
+`
+const BottomSection = styled(SharedBottomSection)`
+
+
+@media (max-width: 600px){
+    display: none;
+  }
+`
+
 
 const NavBar = () => {
   const { productsData, filter, setFilter } = useContext(FeedbacksProvider);

@@ -17,6 +17,13 @@ const Container = styled.div`
   svg {
     transform: scale(1.3);
   }
+
+  
+  @media (max-width: 600px){
+    height: 12vh;
+    border-radius: 0;
+    align-items: center;
+  }
 `;
 
 const FilterContainer = styled.div`
@@ -33,6 +40,12 @@ const FilterContainer = styled.div`
   h3 {
     color: white;
     font-size: 1.1rem;
+  }
+
+  @media (max-width: 600px){
+    h3 {
+      display: none;
+    }
   }
 `;
 
@@ -55,6 +68,14 @@ export const AddFeedBack = styled(Link)`
     background-color: #c75af6;
   }
 `;
+
+
+const LightBulb = styled(BulbIcon)`
+
+  @media (max-width: 900px){
+    display: none;
+  }
+`
 
 const options = [
   { value: "+votes", label: "Most Upvotes" },
@@ -99,7 +120,7 @@ const ProductHeader = ({ filter, setFilter, productRequests }) => {
   return (
     <Container>
       <FilterContainer>
-        <BulbIcon />
+        <LightBulb />
         <h3>
           {productRequests.filter((p) => p.status === "suggestion").length}{" "}
           Suggestions
@@ -107,7 +128,6 @@ const ProductHeader = ({ filter, setFilter, productRequests }) => {
         <h5>Sort by:</h5>
         <Select
           className="select"
-          styles={customStyles}
           onChange={setSelectedOption}
           options={options}
           value={selectedOption}

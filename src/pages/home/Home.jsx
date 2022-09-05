@@ -2,6 +2,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import Products from "../../components/Products/Products";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import Header from "../../components/Mobile/Header";
 
 export const StyledMain = styled(motion.main)`
   width: 100vw;
@@ -10,6 +11,11 @@ export const StyledMain = styled(motion.main)`
   padding-top: 3rem;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 600px){
+    padding-top: 0;
+
+  }
 `;
 
 const Container = styled.div`
@@ -25,6 +31,13 @@ const Container = styled.div`
   grid-template-columns: 1fr;
 
   }
+
+
+  @media (max-width: 600px){
+    display: block;
+    width: 100vw;
+    padding: 0;
+  }
 `;
 
 
@@ -37,6 +50,7 @@ export default function Home() {
       exit={{ opacity: 0 }}
     >
       <Container>
+        <Header />
         <NavBar />
         <Products />
       </Container>

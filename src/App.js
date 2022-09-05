@@ -57,15 +57,14 @@ const GlobalStyle = createGlobalStyle`
   padding: 0;
   box-sizing: border-box;
   font-family: "Jost", sans-serif;
-
 }
 
 body, #root {
   background-color: #f2f4ff;
-  min-height: 100vh;
+  height: 100vh;
   width: 100vw;
-  overflow-x: hidden;
   
+
 }
 
 
@@ -80,6 +79,7 @@ a, a:active, button, button:active, input, form, fieldset {
 @media (max-width: 1000px){
   html {
     font-size: 13px;
+
   }
 }
 
