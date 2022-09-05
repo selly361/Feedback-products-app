@@ -19,11 +19,16 @@ const Body = styled(motion.main)`
 `;
 
 const StyledProductPage = styled.div`
-  width: 800px;
+  width: 60vw;
   display: flex;
   flex-flow: column;
   min-height: 90;
   gap: 2rem;
+
+
+  @media (max-width: 1000px){
+    width: 90vw;
+  }
 `;
 
 const TopSection = styled.section`

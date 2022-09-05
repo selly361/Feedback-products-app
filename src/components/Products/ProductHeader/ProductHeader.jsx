@@ -24,10 +24,6 @@ const FilterContainer = styled.div`
   gap: 1rem;
   align-items: center;
 
-  .Select {
-    width: 200px;
-  }
-
   h5 {
     color: #f2f4ff;
     font-weight: 300;
@@ -67,6 +63,29 @@ const options = [
   { value: "-comments", label: "Least Comments" },
 ];
 
+const customStyles = {
+
+  control: (base, state) => ({
+    ...base,
+    background: "transparent",
+    borderColor: "transparent",
+    "&:hover": {
+      borderColor: "transparent"
+    },
+    color: "white"
+
+  }),
+  menu: (base) => ({
+    ...base,
+    borderRadius: 0,
+    marginTop: 0,
+  }),
+  menuList: (base) => ({
+    ...base,
+    padding: 0,
+  })
+};
+
 const ProductHeader = ({ filter, setFilter, productRequests }) => {
   const [selectedOption, setSelectedOption] = useState({
     value: "+votes",
@@ -87,7 +106,8 @@ const ProductHeader = ({ filter, setFilter, productRequests }) => {
         </h3>
         <h5>Sort by:</h5>
         <Select
-          className="Select"
+          className="select"
+          styles={customStyles}
           onChange={setSelectedOption}
           options={options}
           value={selectedOption}

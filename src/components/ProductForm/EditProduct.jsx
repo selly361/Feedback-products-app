@@ -21,9 +21,15 @@ const statusOptions = [
 
 export const StyledForm = styled.form`
   width: 95%;
+  height: 100%;
   display: flex;
   flex-flow: column;
   justify-content: space-around;
+  
+  .icon-wrapper {
+    height: 50px;
+    width: 50px;
+  }
 
   h2,
   h5 {
@@ -43,7 +49,7 @@ export const StyledEditIcon = styled(EditIcon)`
 export const FeedBackTitleInput = styled.input`
   background-color: #f2f4ff;
   width: 100%;
-  height: 45px;
+  height: 60px;
   border-radius: 10px;
   padding: 0 20px;
   font-size: 0.9rem;
@@ -74,7 +80,7 @@ export const ButtonContainer = styled.div`
   gap: 1rem;
   align-items: center;
   margin-top: 1rem;
-
+  
   .edit-and-cancel-button {
     display: flex;
     gap: 1rem;
@@ -82,10 +88,10 @@ export const ButtonContainer = styled.div`
 `;
 
 const CancelButton = styled.button`
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #f2f4ff;
   font-weight: bold;
-  padding: 0.8rem 0.9rem;
+  padding: 0.4rem 0.5rem;
   border-radius: 10px;
   cursor: pointer;
 
@@ -170,12 +176,14 @@ const EditProduct = ({
     setProductsData(copy);
     sessionStorage.setItem("products", JSON.stringify(copy));
     handleFilteredData();
-    Navigate('/');
+    Navigate("/");
   };
 
   return (
     <StyledForm onSubmit={handleSubmit}>
-      <StyledEditIcon />
+      <div className="icon-wrapper">
+        <StyledEditIcon />
+      </div>
       <h2>Edit '{title}'</h2>
       <h5>Feedback Title</h5>
       <p>Add a short, descriptive headline</p>

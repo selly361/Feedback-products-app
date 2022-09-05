@@ -15,10 +15,15 @@ const options = [
 ];
 
 export const StyledForm = styled.form`
-  width: 90%;
+  width: 95%;
   display: flex;
   flex-flow: column;
-  gap: 0.5rem;
+  justify-content: space-evenly;
+
+  .icon-wrap {
+    height: 50px;
+    width: 50px;
+  }
 
   h2,
   h5 {
@@ -138,7 +143,9 @@ const ProductForm = () => {
 
   return (
     <StyledForm onSubmit={handleSubmit}>
+      <div className="icon-wrap">
       <StyledAddIcon />
+      </div>
       <h2>Create New Feedback</h2>
       <h5>Feedback Title</h5>
       <p>Add a short, descriptive headline</p>

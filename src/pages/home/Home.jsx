@@ -14,11 +14,17 @@ export const StyledMain = styled(motion.main)`
 
 const Container = styled.div`
   width: max-content;
-  min-height: 90vh;
-  width: max-content;
+  min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: 3rem;
+  padding: 1rem;
+  gap: 1rem;
+
+
+  @media (max-width: 1000px){
+  grid-template-columns: 1fr;
+
+  }
 `;
 
 
@@ -27,8 +33,8 @@ export default function Home() {
   return (
     <StyledMain
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1, }}
-      exit={{ opacity: 0, }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
     >
       <Container>
         <NavBar />

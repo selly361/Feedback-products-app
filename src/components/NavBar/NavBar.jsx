@@ -10,6 +10,15 @@ const StyledHeader = styled.header`
   flex-flow: column;
   gap: 1rem;
   border-radius: 10px;
+
+  @media (max-width: 1000px) {
+    & {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      height: max-content;
+    }
+  }
 `;
 
 const TopSection = styled.section`
@@ -41,6 +50,7 @@ const MiddleSection = styled.section`
   flex-flow: wrap;
   padding: 1rem;
   border-radius: 10px;
+
 `;
 
 const FilterButton = styled.button`

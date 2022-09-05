@@ -1,11 +1,12 @@
 import { Route,Routes,useLocation } from "react-router-dom";
 import FeedBackContextWrapper from "./Context/FeedBackContext";
-import Home from "./pages/home/Home";
 import styled,{ createGlobalStyle } from "styled-components";
 import AddFeedBackPage from "./pages/AddFeedBack/Add";
 import ProductPage from "./pages/ProductPage/ProductPage";
-import EditFeedBackPage from "./pages/AddFeedBack/EditFeedBack/Edit";
 import { AnimatePresence } from "framer-motion";
+import EditFeedBackPage from "./pages/EditFeedBack/Edit";
+import Home from "./pages/home/Home";
+
 
 function App() {
   const Location = useLocation();
@@ -76,6 +77,10 @@ a, a:active, button, button:active, input, form, fieldset {
 }
 
 
-
+@media (max-width: 1000px){
+  html {
+    font-size: 13px;
+  }
+}
 
 `;

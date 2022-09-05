@@ -8,17 +8,46 @@ import { motion } from "framer-motion";
 
 const StyledProduct = styled(motion.div)`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   background-color: white;
   width: 100%;
-  height: 20vh;
+  height: max-content;
   border-radius: 10px;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 2rem;
+  border: 1px solid transparent;
+
+  .mobile-product-info {
+    display: none;
+  }
 
   &:hover {
-    border: ${(props) => (props.hover ? "1px solid #ad1fea" : "none")};
+    border-color: ${(props) => (props.hover ? "#ad1fea" : "none")};
     cursor: ${(props) => (props.hover ? "pointer" : "initial")};
+  }
+
+
+  @media (max-width: 1000px){
+
+
+
+    & {
+      flex-flow: column;
+      gap: 1rem;
+    }
+
+    
+
+    .mobile-product-info {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .vote, .comment-length {
+      display: none;
+    }
   }
 `;
 
@@ -66,6 +95,7 @@ const Description = styled.div`
   display: flex;
   gap: 0.7rem;
   flex-flow: column;
+  width: 80%;
 
   h2 {
     color: #373f68;
@@ -75,7 +105,6 @@ const Description = styled.div`
   p {
     color: #647196;
     font-weight: 300;
-    width: max-content;
   }
 
   h3 {
@@ -85,6 +114,13 @@ const Description = styled.div`
     padding: 0.1rem 0.4rem;
     border-radius: 10px;
     font-size: 1rem;
+  }
+
+
+  @media (max-width: 1000px){
+    & {
+      width: 100%;
+    }
   }
 `;
 
@@ -103,7 +139,6 @@ const Product = ({
   hover,
   active,
   description,
-  animation
 }) => {
   const { setProductsData, productsData, handleFilteredData } =
     useContext(FeedbacksProvider);
@@ -124,32 +159,56 @@ const Product = ({
     handleFilteredData();
   };
 
-
-
+  const animation = {
+    hidden: {
+      opacity: 0,
+      y: 100,
+    },
+    exit: {
+      opacity: 0,
+      y: -100,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: .8,
+        ease: [0.02, 0.6, -0.01, 0.91],
+      },
+    },
+  };
 
   return (
     <StyledProduct
-      {...animation}
+      variants={animation}
+      initial="hidden"
+      animate="visible"
       onClick={(e) => Navigate(`/${id}`)}
       hover={hover ? "true" : ""}
     >
-      <ProductInformationContainer>
-        <ProductInformation>
-          <VoteButton active={active ? "true" : ""} onClick={handleVote}>
-            <StyledArrow active={active ? "true" : ""} />
-            <h3>{upvotes}</h3>
-          </VoteButton>
-          <Description>
-            <h2>{title}</h2>
-            <p>{description}</p>
-            <h3>{category}</h3>
-          </Description>
-        </ProductInformation>
+      <VoteButton className="vote" active={active ? "true" : ""} onClick={handleVote}>
+        <StyledArrow active={active ? "true" : ""} />
+        <h3>{upvotes}</h3>
+      </VoteButton>
+      <Description>
+        <h2>{title}</h2>
+        <p>{description}</p>
+        <h3>{category}</h3>
+      </Description>
+      <div className="mobile-product-info">
+        <VoteButton active={active ? "true" : ""} onClick={handleVote}>
+          <StyledArrow active={active ? "true" : ""} />
+          <h3>{upvotes}</h3>
+        </VoteButton>
         <CommentLength>
           <CommentIcon />
           <h3>{comments && comments.length}</h3>
         </CommentLength>
-      </ProductInformationContainer>
+      </div>
+      <CommentLength className="comment-length">
+        <CommentIcon />
+        <h3>{comments && comments.length}</h3>
+      </CommentLength>
     </StyledProduct>
   );
 };

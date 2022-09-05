@@ -28,6 +28,8 @@ const FeedBackContextWrapper = ({ children }) => {
         product.status !== "in-progress"
     );
 
+    
+
     if (filter.category !== "all") {
       copy = copy.filter((product) => product.category == filter.category);
     }
@@ -43,6 +45,7 @@ const FeedBackContextWrapper = ({ children }) => {
     }
 
     setFilteredData(copy);
+
   };
 
   const [filteredData, setFilteredData] = useState();
