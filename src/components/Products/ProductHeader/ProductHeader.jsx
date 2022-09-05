@@ -125,7 +125,6 @@ const ProductHeader = ({ filter, setFilter, productRequests }) => {
           {productRequests.filter((p) => p.status === "suggestion").length}{" "}
           Suggestions
         </h3>
-        <h5>Sort by:</h5>
         <Select
           className="select"
           onChange={setSelectedOption}

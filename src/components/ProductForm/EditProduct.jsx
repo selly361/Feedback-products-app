@@ -25,7 +25,7 @@ export const StyledForm = styled.form`
   display: flex;
   flex-flow: column;
   justify-content: space-around;
-  
+
   .icon-wrapper {
     height: 50px;
     width: 50px;
@@ -40,18 +40,30 @@ export const StyledForm = styled.form`
     color: #647196;
     font-weight: 300;
   }
+
+  @media (max-width: 700px) {
+    & {
+      padding: 1rem;
+    }
+    .icon-wrapper {
+      display: none;
+    }
+  }
+  
 `;
 
 export const StyledEditIcon = styled(EditIcon)`
   transform: translate(0, -50%);
+
+ 
 `;
 
 export const FeedBackTitleInput = styled.input`
   background-color: #f2f4ff;
   width: 100%;
-  height: 60px;
+  height: max-content;
   border-radius: 10px;
-  padding: 0 20px;
+  padding: 10px;
   font-size: 0.9rem;
   color: #647196;
 
@@ -80,7 +92,7 @@ export const ButtonContainer = styled.div`
   gap: 1rem;
   align-items: center;
   margin-top: 1rem;
-  
+
   .edit-and-cancel-button {
     display: flex;
     gap: 1rem;
@@ -91,13 +103,18 @@ const CancelButton = styled.button`
   font-size: 1rem;
   color: #f2f4ff;
   font-weight: bold;
-  padding: 0.4rem 0.5rem;
   border-radius: 10px;
   cursor: pointer;
+  height: 40px;
+  padding: 0 0.4rem;
 
   background-color: #3a4374;
 
   &:hover {
+    background-color: #656ea3;
+  }
+
+  &:active {
     background-color: #656ea3;
   }
 `;
@@ -108,12 +125,20 @@ const DeleteButton = styled(CancelButton)`
   &:hover {
     background-color: #e98888;
   }
+
+  &:active {
+    background-color: #e98888;
+  }
 `;
 
 const EditButton = styled(CancelButton)`
   background-color: #ad1fea;
 
   &:hover {
+    background-color: #c75af6;
+  }
+
+  &:active {
     background-color: #c75af6;
   }
 `;

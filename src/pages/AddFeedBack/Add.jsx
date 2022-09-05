@@ -3,16 +3,23 @@ import styled from "styled-components";
 import ProductForm from "../../components/ProductForm/ProductForm";
 import { motion } from "framer-motion";
 import { StyledMain } from "../home/Home";
-
-const Body = styled(StyledMain)``;
+import { Body } from "../EditFeedBack/Edit";
 
 const Container = styled.div`
+  margin: auto;
   height: 95vh;
-  width: 600px;
+  width: 500px;
   background-color: white;
   border-radius: 10px;
   display: flex;
   justify-content: center;
+
+  @media (max-width: 700px){
+    & {
+      height: 100vh;
+      width: 100vw;
+    }
+  }
 `;
 
 const AddFeedBackPage = () => {

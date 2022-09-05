@@ -28,6 +28,20 @@ const ImageWrapper = styled.div`
     height: 100%;
     border-radius: 50%;
   }
+
+  &.mobile-image {
+    display: none;
+  }
+
+  @media (max-width: 700px) {
+    & {
+      display: none;
+    }
+
+    &.mobile-image {
+      display: block;
+    }
+  }
 `;
 const CommentDetails = styled.div`
   display: flex;
@@ -42,7 +56,12 @@ const UserComment = styled.div`
   display: flex;
   justify-content: space-between;
 
-  div:first-child {
+  .user-wrapper {
+    display: flex;
+    gap: .3rem;
+  }
+
+  .user-details {
     h4 {
       color: #3a4374;
     }
@@ -134,7 +153,7 @@ const Comment = ({
     setProductsData,
     handleFilteredData,
     productId,
-    comment
+    comment,
   };
 
   let copy = productsData;
@@ -166,9 +185,14 @@ const Comment = ({
             </ImageWrapper>
             <CommentDetails>
               <UserComment>
-                <div>
-                  <h4>{comment.user.name}</h4>
-                  <p>@{comment.user.username}</p>
+                <div className="user-wrapper">
+                  <ImageWrapper className="mobile-image">
+                    <img src={comment.user.image} />
+                  </ImageWrapper>
+                  <div className="user-details">
+                    <h4>{comment.user.name}</h4>
+                    <p>@{comment.user.username}</p>
+                  </div>
                 </div>
                 <h5 onClick={() => setReplyToComment(!replyToComment)}>
                   Reply
@@ -189,10 +213,7 @@ const Comment = ({
           )}
         </div>
         {comment.replies.map((reply) => (
-          <ReplyToReply
-            {...props}
-            reply={reply}
-          />
+          <ReplyToReply {...props} reply={reply} />
         ))}
       </Container>
     </Fragment>

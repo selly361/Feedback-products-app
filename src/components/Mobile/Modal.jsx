@@ -21,23 +21,25 @@ const StyledModal = styled(motion.aside)`
       height: 100vh;
       background-color: white;
       z-index: 50;
-      justify-content: center;
       gap: 1rem;
+      padding-top: 8rem;
       background-color: #f7f8fd;
     }
   }
 `;
 
 const MiddleSection = styled(SharedBottomSection)`
-  width: 90%;
+  width: 80%;
 `;
 
 const TopSection = styled(SharedMiddleSection)`
-  width: 90%;
+  width: 80%;
 `;
 
-const OverLayStyle = styled.div`
+const OverLayStyle = styled(motion.div)`
   display: none;
+  transition: 1s opacity;
+  opacity: 0;
 
   @media (max-width: 600px) {
     & {
@@ -53,12 +55,13 @@ const OverLayStyle = styled.div`
       background-color: black;
       opacity: 0.5;
       overflow: hidden;
+
     }
   }
 `;
 
 const FilterButton = styled.button`
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   height: max-content;
   font-weight: 800;
   background-color: #f2f4ff;
@@ -153,8 +156,7 @@ const Modal = ({ setOpen }) => {
 
   let roadmapsStatus = (status) => {
     let copy = productsData;
-    return copy.productRequests.filter((product) => product.status == status)
-      .length;
+    return copy.productRequests.filter((product) => product.status == status).length;
   };
   
   return (
@@ -249,7 +251,7 @@ const Modal = ({ setOpen }) => {
           </StatusContainer>
         </MiddleSection>
       </StyledModal>
-      <OverLayStyle onClick={() => setOpen(false)} />
+      <OverLayStyle initial={{opacity: 0}} animate={{ opacity: 0.5 }} onClick={() => setOpen(false)} />
     </>
   );
 };

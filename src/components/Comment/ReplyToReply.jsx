@@ -11,6 +11,11 @@ const Replies = styled.div`
   display: flex;
   gap: 1.5rem;
   width: 90%;
+
+  @media (max-width: 800px){
+    gap: 1rem;
+    width: 95%;
+  }
 `;
 
 const ImageWrapper = styled.div`
@@ -19,6 +24,20 @@ const ImageWrapper = styled.div`
   img {
     height: 100%;
     border-radius: 50%;
+  }
+
+  &.mobile-image {
+    display: none;
+  }
+
+  @media (max-width: 700px) {
+    & {
+      display: none;
+    }
+
+    &.mobile-image {
+      display: block;
+    }
   }
 `;
 const CommentDetails = styled.div`
@@ -34,7 +53,12 @@ const UserComment = styled.div`
   display: flex;
   justify-content: space-between;
 
-  div:first-child {
+  .user-wrapper {
+    display: flex;
+    gap: .3rem;
+  }
+
+  .user-details {
     h4 {
       color: #3a4374;
     }
@@ -149,13 +173,20 @@ const ReplyToReply = ({
             <img src={reply.user.image} />
           </ImageWrapper>
           <CommentDetails>
-            <UserComment>
-              <div>
-                <h4>{reply.user.name}</h4>
-                <p>@{reply.user.username}</p>
-              </div>
-              <h5 onClick={() => setReplyToReply(!replyToReply)}>Reply</h5>
-            </UserComment>
+          <UserComment>
+                <div className="user-wrapper">
+                  <ImageWrapper className="mobile-image">
+                    <img src={reply.user.image} />
+                  </ImageWrapper>
+                  <div className="user-details">
+                    <h4>{reply.user.name}</h4>
+                    <p>@{reply.user.username}</p>
+                  </div>
+                </div>
+                <h5 onClick={() => setReplyToReply(!replyToReply)}>
+                  Reply
+                </h5>
+              </UserComment>
             <CommentContent>
               <span>@{reply.replyingTo}</span> {reply.content}
             </CommentContent>

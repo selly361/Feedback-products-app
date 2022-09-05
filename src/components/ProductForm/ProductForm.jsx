@@ -34,6 +34,13 @@ export const StyledForm = styled.form`
     color: #647196;
     font-weight: 300;
   }
+
+  
+  @media (max-width: 700px) {
+    .icon-wrap {
+      display: none;
+    }
+  }
 `;
 
 export const StyledAddIcon = styled(AddIcon)`

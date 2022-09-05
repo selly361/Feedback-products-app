@@ -29,6 +29,10 @@ const StyledProductPage = styled.div`
   @media (max-width: 1000px){
     width: 90vw;
   }
+
+  @media (max-width: 700px){
+    width: 97vw;
+  }
 `;
 
 const TopSection = styled.section`
@@ -59,6 +63,10 @@ const CommentContainer = styled.div`
   & > div:not(:last-child) {
     border-bottom: 1px solid rgba(140, 146, 179, 0.25);
     padding-bottom: 4rem;
+  }
+
+  @media (max-width: 800px){
+    padding: 1rem;
   }
 `;
 

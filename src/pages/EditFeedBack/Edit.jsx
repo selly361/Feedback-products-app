@@ -7,15 +7,28 @@ import { FeedbacksProvider } from "../../Context/FeedBackContext";
 import { StyledMain } from "../home/Home";
 
 
-const Body = styled(StyledMain)``;
+export const Body = styled.main`
+  height: 100vh;
+  display: flex;
+  min-height: none;
+`;
 
 const Container = styled.div`
+  margin: auto;
   width: 500px;
-  height: 93vh;
+  height: 90vh;
   background-color: white;
   border-radius: 10px;
   display: flex;
   justify-content: center;
+  align-items: center;
+
+  @media (max-width: 700px){
+    & {
+      height: 100vh;
+      width: 100vw;
+    }
+  }
 `;
 
 const EditFeedBackPage = () => {

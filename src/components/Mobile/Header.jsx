@@ -1,3 +1,4 @@
+import { AnimatePresence } from "framer-motion";
 import React, { Fragment, useState } from "react";
 import styled from "styled-components";
 import Modal from "./Modal";
@@ -20,6 +21,10 @@ const StyledHeader = styled.div`
         #a337f6 53.09%,
         #28a7ed 100%
       );
+
+      img:hover {
+        cursor: pointer;
+      }
 
       nav {
         width: 90%;
@@ -45,7 +50,7 @@ const StyledHeader = styled.div`
 
 const Header = () => {
   const [open, setOpen] = useState(false);
-  
+
   document.documentElement.style.overflow = open ? "hidden" : "auto";
   return (
     <Fragment>
@@ -70,9 +75,7 @@ const Header = () => {
           </div>
         </nav>
       </StyledHeader>
-      {
-        open && <Modal setOpen={setOpen} />
-      }
+      <AnimatePresence>{open && <Modal setOpen={setOpen} />}</AnimatePresence>
     </Fragment>
   );
 };

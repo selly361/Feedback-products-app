@@ -13,9 +13,21 @@ const Container = styled.div`
   flex-flow: column;
   gap: 1rem;
 
+  .products-wrap {
+    display: flex;
+  flex-flow: column;
+  gap: 1rem;
+  }
+
   @media (max-width: 1000px){
     & {
       width: 100%;
+    }
+  }
+
+  @media (max-width: 600px){
+    .products-wrap {
+      padding: 1rem;
     }
   }
 `;
@@ -32,11 +44,13 @@ const Products = () => {
             filter={filter}
             productRequests={productsData.productRequests}
           />
-          {filteredData.map((data, index) => (
+         <div className="products-wrap">
+         {filteredData.map((data, index) => (
             <DelayAnimationChildren delay={100 * index}>
               <Product key={data.id} {...data} hover={true} />
             </DelayAnimationChildren>
           ))}
+         </div>
         </Container>
     )
   );
