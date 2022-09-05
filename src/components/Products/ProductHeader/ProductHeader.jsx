@@ -67,6 +67,22 @@ export const AddFeedBack = styled(Link)`
   &:hover {
     background-color: #c75af6;
   }
+
+  &.mobile-addfeedback {
+    display: none;
+  }
+
+  @media (max-width: 500px){
+    & {
+      display: none;
+    }
+
+    &.mobile-addfeedback {
+      display: block;
+      font-size: 2rem;
+      padding: .2rem .8rem;
+    }
+  }
 `;
 
 
@@ -134,6 +150,7 @@ const ProductHeader = ({ filter, setFilter, productRequests }) => {
       </FilterContainer>
       <AddFeedBackContainer>
         <AddFeedBack to="/add">+ Add FeedBack</AddFeedBack>
+        <AddFeedBack to="/add" className="mobile-addfeedback">+</AddFeedBack>
       </AddFeedBackContainer>
     </Container>
   );
