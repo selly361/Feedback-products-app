@@ -44,7 +44,7 @@ const BackButton = ({ classname }) => {
     const Navigate = useNavigate();
 
   return (
-    <StyledBackButton onClick={() => Navigate(-1)} className={classname}>
+    <StyledBackButton onClick={() => Navigate("/")} className={classname}>
         <LeftArrow className={classname + "-icon"} />
         <h4>Go Back</h4>
     </StyledBackButton>
