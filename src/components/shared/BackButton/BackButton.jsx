@@ -17,19 +17,35 @@ const StyledBackButton = styled.div`
             cursor: pointer;
         }
     }
+
+    &.customStyles {
+        font-size: 0.9rem;
+        gap: 1rem;
+
+        h4 {
+            color: white;
+        }
+    }
     
 `
 
 const LeftArrow = styled(Icon)`
-    transform: scale(1.4)
+    transform: scale(1.4);
+
+    &.customStyles-icon {
+        path {
+            stroke: white;
+        }
+        transform: scale(1.2);
+    }
 `
 
-const BackButton = () => {
+const BackButton = ({ classname }) => {
     const Navigate = useNavigate();
 
   return (
-    <StyledBackButton onClick={() => Navigate(-1)}>
-        <LeftArrow />
+    <StyledBackButton onClick={() => Navigate(-1)} className={classname}>
+        <LeftArrow className={classname + "-icon"} />
         <h4>Go Back</h4>
     </StyledBackButton>
   )

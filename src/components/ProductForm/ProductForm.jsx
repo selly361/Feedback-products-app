@@ -144,7 +144,7 @@ const ProductForm = () => {
     productRequests.push(newProduct);
 
     setProductsData(copy);
-    localStorage.setItem("products", JSON.stringify(copy))
+    sessionStorage.setItem("products", JSON.stringify(copy))
     handleFilteredData()
     Navigate(-1)
   };

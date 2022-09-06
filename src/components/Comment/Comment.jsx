@@ -2,12 +2,15 @@ import React, { useContext, useState, useEffect, Fragment } from "react";
 import styled from "styled-components";
 import ReplyToReply from "./ReplyToReply";
 
-const Container = styled.div``;
+const Container = styled.div`
+`;
 
 const CommentsContainer = styled.div`
   display: flex;
   gap: 2rem;
 `;
+
+
 
 const RepliesWrapper = styled.div`
   display: flex;
@@ -191,7 +194,7 @@ const Comment = ({
     });
 
     setProductsData(copy);
-    localStorage.setItem("products", JSON.stringify(copy));
+    sessionStorage.setItem("products", JSON.stringify(copy));
     handleFilteredData();
     setReplyToComment(false);
   };

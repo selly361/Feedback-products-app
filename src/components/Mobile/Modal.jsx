@@ -15,7 +15,6 @@ const StyledModal = styled(motion.aside)`
       flex-direction: column;
       align-items: center;
       right: 0;
-      height: 0;
       top: 0;
       bottom: 0;
       width: 60vw;
@@ -23,7 +22,8 @@ const StyledModal = styled(motion.aside)`
       background-color: white;
       z-index: 50;
       background-color: #f7f8fd;
-      justify-content: center;
+      justify-content: flex-start;
+      padding-top: 2rem;
     }
 
     .wrapper {
@@ -60,7 +60,6 @@ const OverLayStyle = styled(motion.div)`
       background-color: black;
       opacity: 0.5;
       overflow: hidden;
-
     }
   }
 `;
@@ -156,109 +155,128 @@ const StatusLength = styled.h3`
   font-size: 1.2rem;
 `;
 
+const Wrap = styled.div`
+  display: none;
+
+  @media (max-width: 600px) {
+    width: 100vw;
+    position: relative;
+    display: block;
+  }
+`;
+
 const Modal = ({ setOpen }) => {
   const { setFilter, filter, productsData } = useContext(FeedbacksProvider);
 
   let roadmapsStatus = (status) => {
     let copy = productsData;
-    return copy.productRequests.filter((product) => product.status == status).length;
+    return copy.productRequests.filter((product) => product.status == status)
+      .length;
   };
-  
+
   return (
     <>
-      <StyledModal initial={{ x: "100%", opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: "100%", opacity: 0 }}>
+      <Wrap>
+        <StyledModal
+          initial={{ x: "100%", opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          exit={{ x: "100%", opacity: 0 }}
+        >
           <div className="wrapper">
-          <TopSection>
-          <FilterButton
-            className={filter.category == "all" ? "active" : ""}
-            onClick={(e) => {
-              setFilter({ category: "all", filterType: filter.filterType });
-              
-            }}
-          >
-            All
-          </FilterButton>
-          <FilterButton
-            className={filter.category == "ui" ? "active" : ""}
-            onClick={(e) => {
-              setFilter({ category: "ui", filterType: filter.filterType });
-              
-            }}
-          >
-            UI
-          </FilterButton>
-          <FilterButton
-            className={filter.category == "ux" ? "active" : ""}
-            onClick={(e) => {
-              setFilter({ category: "ux", filterType: filter.filterType });
-              
-            }}
-          >
-            UX
-          </FilterButton>
-          <FilterButton
-            className={filter.category == "enhancement" ? "active" : ""}
-            onClick={(e) => {
-              setFilter({
-                category: "enhancement",
-                filterType: filter.filterType,
-              });
-              
-            }}
-          >
-            Enhancement
-          </FilterButton>
-          <FilterButton
-            className={filter.category == "bug" ? "active" : ""}
-            onClick={(e) => {
-              setFilter({ category: "bug", filterType: filter.filterType });
-              
-            }}
-          >
-            Bug
-          </FilterButton>
-          <FilterButton
-            className={filter.category == "feature" ? "active" : ""}
-            onClick={(e) => {
-              setFilter({ category: "feature", filterType: filter.filterType });
-              
-            }}
-          >
-            Feature
-          </FilterButton>
-        </TopSection>
-        <MiddleSection>
-          <RoadMap>
-            <h2>Roadmap</h2>
-            <Link to="/roadmap">View</Link>
-          </RoadMap>
-          <StatusContainer>
-            <PlannedStatus>
-              <StatusName>
-                <PlannedDot />
-                <h3>Planned</h3>
-              </StatusName>
-              <StatusLength>{roadmapsStatus("planned")}</StatusLength>
-            </PlannedStatus>
-            <InProgressStatus>
-              <StatusName>
-                <InProgressDot />
-                <h3>In-Progress</h3>
-              </StatusName>
-              <StatusLength>{roadmapsStatus("in-progress")}</StatusLength>
-            </InProgressStatus>
-            <LiveStatus>
-              <StatusName>
-                <LiveDot />
-                <h3>Live</h3>
-              </StatusName>
-              <StatusLength>{roadmapsStatus("live")}</StatusLength>
-            </LiveStatus>
-          </StatusContainer>
-        </MiddleSection>
+            <TopSection>
+              <FilterButton
+                className={filter.category == "all" ? "active" : ""}
+                onClick={(e) => {
+                  setFilter({ category: "all", filterType: filter.filterType });
+                }}
+              >
+                All
+              </FilterButton>
+              <FilterButton
+                className={filter.category == "ui" ? "active" : ""}
+                onClick={(e) => {
+                  setFilter({ category: "ui", filterType: filter.filterType });
+                }}
+              >
+                UI
+              </FilterButton>
+              <FilterButton
+                className={filter.category == "ux" ? "active" : ""}
+                onClick={(e) => {
+                  setFilter({ category: "ux", filterType: filter.filterType });
+                }}
+              >
+                UX
+              </FilterButton>
+              <FilterButton
+                className={filter.category == "enhancement" ? "active" : ""}
+                onClick={(e) => {
+                  setFilter({
+                    category: "enhancement",
+                    filterType: filter.filterType,
+                  });
+                }}
+              >
+                Enhancement
+              </FilterButton>
+              <FilterButton
+                className={filter.category == "bug" ? "active" : ""}
+                onClick={(e) => {
+                  setFilter({ category: "bug", filterType: filter.filterType });
+                }}
+              >
+                Bug
+              </FilterButton>
+              <FilterButton
+                className={filter.category == "feature" ? "active" : ""}
+                onClick={(e) => {
+                  setFilter({
+                    category: "feature",
+                    filterType: filter.filterType,
+                  });
+                }}
+              >
+                Feature
+              </FilterButton>
+            </TopSection>
+            <MiddleSection>
+              <RoadMap>
+                <h2>Roadmap</h2>
+                <Link to="/roadmap">View</Link>
+              </RoadMap>
+              <StatusContainer>
+                <PlannedStatus>
+                  <StatusName>
+                    <PlannedDot />
+                    <h3>Planned</h3>
+                  </StatusName>
+                  <StatusLength>{roadmapsStatus("planned")}</StatusLength>
+                </PlannedStatus>
+                <InProgressStatus>
+                  <StatusName>
+                    <InProgressDot />
+                    <h3>In-Progress</h3>
+                  </StatusName>
+                  <StatusLength>{roadmapsStatus("in-progress")}</StatusLength>
+                </InProgressStatus>
+                <LiveStatus>
+                  <StatusName>
+                    <LiveDot />
+                    <h3>Live</h3>
+                  </StatusName>
+                  <StatusLength>{roadmapsStatus("live")}</StatusLength>
+                </LiveStatus>
+              </StatusContainer>
+            </MiddleSection>
           </div>
-      </StyledModal>
-      <OverLayStyle initial={{opacity: 0}} animate={{ opacity: 0.5 }} exit={{ opacity: 0 }} onClick={() => setOpen(false)} />
+        </StyledModal>
+      </Wrap>
+      <OverLayStyle
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.5 }}
+        exit={{ opacity: 0 }}
+        onMouseDown={() => setOpen(false)}
+      />
     </>
   );
 };

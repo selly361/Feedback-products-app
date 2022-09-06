@@ -166,7 +166,7 @@ const ReplyToReply = ({
       user: productsData.currentUser,
     });
 
-    localStorage.setItem("products", JSON.stringify(copy))
+    sessionStorage.setItem("products", JSON.stringify(copy))
     setProductsData(copy)
     handleFilteredData()
     setReplyToReply(false)

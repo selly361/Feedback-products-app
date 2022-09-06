@@ -15,7 +15,8 @@ const Body = styled(motion.main)`
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  padding-top: 3rem;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
 `;
 
 const StyledProductPage = styled.div`
@@ -101,6 +102,11 @@ const AddCommentForm = styled.form`
     display: flex;
     justify-content: space-between;
 
+    p {
+      color: #647196;
+
+    }
+
     button {
       font-size: 1rem;
       padding: 0.6rem 1.2rem;
@@ -149,7 +155,8 @@ const NumberOfComments = styled.h2`
 `;
 
 const ProductPage = () => {
-  const { productsData, setProductsData, handleFilteredData } = useContext(FeedbacksProvider);
+  const { productsData, setProductsData, handleFilteredData } =
+    useContext(FeedbacksProvider);
   const { id } = useParams();
 
   let copy = productsData;
@@ -157,72 +164,83 @@ const ProductPage = () => {
   let productDetails = copy.productRequests.find((p) => p.id === id);
   let comments = productDetails?.comments;
   const [content, setContent] = useState("");
-
-
+  const [charsLeft, setCharsLeft] = useState(225);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     let copiedProductsData = productsData;
 
-    copiedProductsData.productRequests
-      .find((p) => p.id === id)
-      .comments.push({
-        id: uuid(),
-        content: content,
-        user: copy.currentUser,
-        replies: [],
-      });
+    if (content.trim()) {
+      copiedProductsData.productRequests
+        .find((p) => p.id === id)
+        .comments.push({
+          id: uuid(),
+          content: content,
+          user: copy.currentUser,
+          replies: [],
+        });
+    }
 
     setProductsData(copiedProductsData);
-    localStorage.setItem("products", JSON.stringify(copiedProductsData));
+    sessionStorage.setItem("products", JSON.stringify(copiedProductsData));
     handleFilteredData();
   };
 
-    return  (
-      <Body
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-      >
-        <StyledProductPage>
-        
-          <TopSection>
-            <BackButton />
-            <EditFeedbackButton to={`/edit/${id}`}>
-              Edit Feedback
-            </EditFeedbackButton>
-          </TopSection>
-          <Product {...productDetails} hover={false} />
-          <CommentContainer>
-            <NumberOfComments>
-              {comments.length} Comments
-            </NumberOfComments>
-            {
-             comments.map((comment) => (
-                <Comment
-                  productId={id}
-                  productsData={productsData}
-                  setProductsData={setProductsData}
-                  handleFilteredData={handleFilteredData}
-                  comment={comment}
-                />
-              ))}
-          </CommentContainer>
-          <AddCommentForm onSubmit={handleSubmit}>
-            <h4>Add Comment</h4>
-            <textarea
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
+  const handleKeyDown = (e) => {
+    if (e.keyCode == 8 && !e.target.value) {
+      setCharsLeft(225);
+    } else if (e.keyCode == 8 && e.target.value) {
+      setCharsLeft(charsLeft - 1);
+    }
+  };
+
+  return (
+    <Body
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <StyledProductPage>
+        <TopSection>
+          <BackButton />
+          <EditFeedbackButton to={`/edit/${id}`}>
+            Edit Feedback
+          </EditFeedbackButton>
+        </TopSection>
+        <Product {...productDetails} hover={false} />
+        <CommentContainer>
+          <NumberOfComments>{comments.length} Comments</NumberOfComments>
+          {comments.map((comment) => (
+            <Comment
+              productId={id}
+              productsData={productsData}
+              setProductsData={setProductsData}
+              handleFilteredData={handleFilteredData}
+              comment={comment}
             />
-            <div>
-              <h5>255 characters left</h5>
-              <button>Post Comment</button>
-            </div>
-          </AddCommentForm>
-        </StyledProductPage>
-      </Body>
-    )
+          ))}
+        </CommentContainer>
+        <AddCommentForm novalidate onSubmit={handleSubmit}>
+          <h4>Add Comment</h4>
+          <textarea
+          required
+            value={content}
+            maxLength={225}
+            onKeyDown={handleKeyDown}
+            onChange={(e) => {
+              setCharsLeft(225 - e.target.value.split("").length);
+              setContent(e.target.value);
+            }}
+          />
+          <div>
+            <p>{charsLeft} characters left</p>
+            <button>Post Comment</button>
+          </div>
+        </AddCommentForm>
+      </StyledProductPage>
+    </Body>
+  );
 };
 
 export default ProductPage;

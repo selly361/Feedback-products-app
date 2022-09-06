@@ -26,6 +26,21 @@ export const StyledForm = styled.form`
   flex-flow: column;
   justify-content: space-around;
 
+  .error,
+  .input-error {
+    visibility: hidden;
+    color: red;
+  }
+
+  .text-field:invalid + .error,
+  .input-field:invalid + .input-error {
+    visibility: initial;
+  }
+
+  .input-field:invalid {
+    border: 1px solid red;
+  }
+
   .icon-wrapper {
     height: 50px;
     width: 50px;
@@ -49,13 +64,10 @@ export const StyledForm = styled.form`
       display: none;
     }
   }
-  
 `;
 
 export const StyledEditIcon = styled(EditIcon)`
   transform: translate(0, -50%);
-
- 
 `;
 
 export const FeedBackTitleInput = styled.input`
@@ -66,11 +78,12 @@ export const FeedBackTitleInput = styled.input`
   padding: 10px;
   font-size: 0.9rem;
   color: #647196;
+  border: 1px solid #4661e6;
 
   &:focus,
   &:hover {
-    border: 1px solid #4661e6;
     cursor: pointer;
+    border: 1px solid #4661e6;
   }
 `;
 
@@ -78,9 +91,14 @@ export const DescriptInput = styled(FeedBackTitleInput)`
   height: 80px;
   resize: none;
   padding: 10px;
+  border: 1px solid #4661e6;
 
   &:focus {
     outline: unset;
+  }
+
+  &:invalid {
+    border: 1px solid red;
   }
 `;
 
@@ -106,7 +124,7 @@ const CancelButton = styled.button`
   border-radius: 10px;
   cursor: pointer;
   height: 40px;
-  padding: .2rem 0.8rem;
+  padding: 0.2rem 0.8rem;
 
   background-color: #3a4374;
 
@@ -115,7 +133,8 @@ const CancelButton = styled.button`
   }
 
   &:active {
-    background-color: #656ea3;
+    color: white;
+    outline: 2px dashed #656ea3;
   }
 `;
 
@@ -128,6 +147,7 @@ const DeleteButton = styled(CancelButton)`
 
   &:active {
     background-color: #e98888;
+    outline: 2px dashed #e98888;
   }
 `;
 
@@ -140,6 +160,7 @@ const EditButton = styled(CancelButton)`
 
   &:active {
     background-color: #c75af6;
+    outline: 2px dashed #c75af6;
   }
 `;
 
@@ -174,24 +195,26 @@ const EditProduct = ({
 
     let copy = productsData;
 
-    let updatedProduct = {
-      id,
-      title: feedbackTitle,
-      upvotes,
-      status: statusOption.value,
-      category: categoryOption.value,
-      active,
-      description: descriptionData,
-      comments,
-    };
+    if (descriptionData.trim() && feedbackTitle.trim()) {
+      let updatedProduct = {
+        id,
+        title: feedbackTitle,
+        upvotes,
+        status: statusOption.value,
+        category: categoryOption.value,
+        active,
+        description: descriptionData,
+        comments,
+      };
 
-    let index = copy.productRequests.findIndex((p) => p.id === id);
-    copy.productRequests[index] = updatedProduct;
+      let index = copy.productRequests.findIndex((p) => p.id === id);
+      copy.productRequests[index] = updatedProduct;
 
-    setProductsData(copy);
-    localStorage.setItem("products", JSON.stringify(copy));
-    handleFilteredData();
-    Navigate(-1);
+      setProductsData(copy);
+      sessionStorage.setItem("products", JSON.stringify(copy));
+      handleFilteredData();
+      Navigate(-1);
+    }
   };
 
   const handleDelete = () => {
@@ -199,13 +222,13 @@ const EditProduct = ({
 
     copy.productRequests = copy.productRequests.filter((p) => p.id !== id);
     setProductsData(copy);
-    localStorage.setItem("products", JSON.stringify(copy));
+    sessionStorage.setItem("products", JSON.stringify(copy));
     handleFilteredData();
     Navigate("/");
   };
 
   return (
-    <StyledForm onSubmit={handleSubmit}>
+    <StyledForm noValidate onSubmit={handleSubmit}>
       <div className="icon-wrapper">
         <StyledEditIcon />
       </div>
@@ -213,9 +236,12 @@ const EditProduct = ({
       <h5>Feedback Title</h5>
       <p>Add a short, descriptive headline</p>
       <FeedBackTitleInput
+        required
+        className="input-field"
         value={feedbackTitle}
         onChange={(e) => setFeedbackTitle(e.target.value)}
       />
+      <p className="input-error">Cant be empty</p>
       <h5>Category</h5>
       <p>Choose a category for your feedback</p>
       <Select
@@ -235,10 +261,14 @@ const EditProduct = ({
         Include any specific comments on what should be improved, added, etc.
       </p>
       <DescriptInput
+        className="text-field"
+        required
+        maxLength={225}
         as="textarea"
         value={descriptionData}
         onChange={(e) => setDescriptionData(e.target.value)}
       />
+      <p className="error">Cant be empty</p>
       <ButtonContainer>
         <DeleteButton type="button" onClick={handleDelete}>
           Delete

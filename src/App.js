@@ -9,6 +9,7 @@ import { AnimatePresence } from "framer-motion";
 import EditFeedBackPage from "./pages/EditFeedBack/Edit";
 import Home from "./pages/home/Home";
 import { useContext } from "react";
+import RoadMapPage from "./pages/RoadMap/RoadMapPage";
 
 function App() {
   const Location = useLocation();
@@ -20,13 +21,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/add" element={<AddFeedBackPage />} />
           <Route path="/edit/:id" element={<EditFeedBackPage />} />
-          <Route
-            path="/:id"
-            element={
-              <ProductPage
-              />
-            }
-          />
+          <Route path="/:id" element={<ProductPage />} />
+          <Route path="/roadmap" element={<RoadMapPage />} />
         </Routes>
       </AnimatePresence>
     </FeedBackContextWrapper>
@@ -71,7 +67,7 @@ body, #root {
   background-color: #f2f4ff;
   height: 100vh;
   width: 100vw;
-  
+  overflow-x: hidden;
 
 }
 

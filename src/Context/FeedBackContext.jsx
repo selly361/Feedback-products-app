@@ -9,10 +9,11 @@ feedBackData.productRequests.map((product) =>
   product.comments.map((comment) => (comment.id = uuid()))
 );
 
-export const FeedbacksProvider = createContext({ productsData: {} });
+export const FeedbacksProvider = createContext({ productsData: {}, filteredData: [] });
 
 const FeedBackContextWrapper = ({ children }) => {
-  const [productsData, setProductsData] = useState(() => JSON.parse(localStorage.getItem("products")) || feedBackData);
+  const [productsData, setProductsData] = useState(() => JSON.parse(sessionStorage.getItem("products")) || feedBackData);
+  const [filteredData, setFilteredData] = useState([]);
 
 
   const [filter, setFilter] = useState({
@@ -49,7 +50,6 @@ const FeedBackContextWrapper = ({ children }) => {
 
   };
 
-  const [filteredData, setFilteredData] = useState();
 
   useEffect(() => {
     handleFilteredData();

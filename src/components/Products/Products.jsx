@@ -32,29 +32,85 @@ const Container = styled.div`
   }
 `;
 
+const NoSuggestionsContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+  text-align: center;
+  padding-top: 3rem;
+  
+  img {
+    height: 100px;
+  }
+  h2 {
+    color: #3a4374;
+    font-size: 1.6rem;
+  }
+
+  p {
+    color: #647196;
+    font-weight: light;
+  }
+
+  a {
+    font-size: 1.1rem;
+    border-radius: 10px;
+    color: white;
+    background-color: #ad1fea;
+    padding: .4rem .8rem;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #c75af6;
+    }
+
+    &:active {
+      outline: 1.5px dashed black;
+      color: white;
+    }
+
+  }
+`
+
 const Products = () => {
   const { filteredData, setFilter, filter, productsData } =
     useContext(FeedbacksProvider);
 
-  return (
-    filteredData && (
-        <Container>
-          <ProductHeader
-            setFilter={setFilter}
-            filter={filter}
-            productRequests={productsData.productRequests}
-          />
-         <div className="products-wrap">
-         {filteredData.map((data, index) => (
-            <DelayAnimationChildren delay={100 * index}>
-              <Product key={data.id} {...data} hover={true} />
-            </DelayAnimationChildren>
-          ))}
-         </div>
-        </Container>
-    )
-  );
-};
+
+      return (
+            <Container>
+              <ProductHeader
+                setFilter={setFilter}
+                filter={filter}
+                productRequests={productsData.productRequests}
+              />
+             <div className="products-wrap">
+             {filteredData.length ?
+                filteredData.map((data, index) => (
+                <DelayAnimationChildren delay={100 * index}>
+                  <Product key={data.id} {...data} hover={true} />
+                </DelayAnimationChildren>
+              )):  (
+
+                <NoSuggestionsContainer>
+                  <img src="https://lm-product-feedback-app.netlify.app/static/media/illustration-empty.bcc93d24.svg" />
+                  <h2>There is no feedback yet.</h2>
+                  <p>Got a suggestion? Found a bug that needs to be squashed?<br />
+                   We love hearing about new ideas to improve our app.</p>
+                  <Link to="/add">+ Add Feedback</Link>
+                </NoSuggestionsContainer>
+
+              )}
+             </div>
+            </Container>
+        ) 
+
+
+    }
+  
 
 export const DelayAnimationChildren = ({ children, delay }) => {
   const [completed, setCompleted] = useState(false);

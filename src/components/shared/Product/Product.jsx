@@ -27,17 +27,11 @@ const StyledProduct = styled(motion.div)`
     cursor: ${(props) => (props.hover ? "pointer" : "initial")};
   }
 
-
-  @media (max-width: 1000px){
-
-
-
+  @media (max-width: 1000px) {
     & {
       flex-flow: column;
       gap: 1rem;
     }
-
-    
 
     .mobile-product-info {
       display: flex;
@@ -45,7 +39,8 @@ const StyledProduct = styled(motion.div)`
       justify-content: space-between;
     }
 
-    .vote, .comment-length {
+    .vote,
+    .comment-length {
       display: none;
     }
   }
@@ -66,16 +61,26 @@ const VoteButton = styled.button`
     background-color: ${(props) => (props.active ? "#4661e6" : "#cfd7ff")};
   }
 
+  &:hover, &:active {
+    outline: 2px dashed ${(props) => (props.active ? "#4661e6" : "#cfd7ff")};
+
+  }
+
   h3 {
     color: ${(props) => (props.active ? "#fff" : "#373f68")};
     font-weight: 700;
   }
 `;
 
-const StyledArrow = styled(ArrowIcon)`
-  path {
-    transform: scale(1);
-    stroke: ${(props) => (props.active ? "white" : null)};
+const StyledArrow = styled.img`
+  transition: 1s transform;
+  height: 20px;
+  transform: rotate(180deg);
+  filter: invert(42%) sepia(87%) saturate(3459%) hue-rotate(218deg) brightness(90%) contrast(100%);
+
+  &.activeArrow {
+    transform: rotate(0);
+    filter: invert(97%) sepia(31%) saturate(787%) hue-rotate(179deg) brightness(100%) contrast(102%);
   }
 `;
 
@@ -116,8 +121,7 @@ const Description = styled.div`
     font-size: 1rem;
   }
 
-
-  @media (max-width: 1000px){
+  @media (max-width: 1000px) {
     & {
       width: 100%;
     }
@@ -154,7 +158,7 @@ const Product = ({
 
     product.active ? (product.upvotes += 1) : (product.upvotes -= 1);
 
-    localStorage.setItem("products", JSON.stringify(copy));
+    sessionStorage.setItem("products", JSON.stringify(copy));
     setProductsData(copy);
     handleFilteredData();
   };
@@ -172,7 +176,7 @@ const Product = ({
       opacity: 1,
       y: 0,
       transition: {
-        duration: .8,
+        duration: 0.8,
         ease: [0.02, 0.6, -0.01, 0.91],
       },
     },
@@ -186,8 +190,16 @@ const Product = ({
       onClick={(e) => Navigate(`/${id}`)}
       hover={hover ? "true" : ""}
     >
-      <VoteButton className="vote" active={active ? "true" : ""} onClick={handleVote}>
-        <StyledArrow active={active ? "true" : ""} />
+      <VoteButton
+        className="vote"
+        active={active ? "true" : ""}
+        onClick={handleVote}
+      >
+        <StyledArrow
+          src="https://www.reshot.com/preview-assets/icons/EUCMLYADT9/arrow-chevron-down-EUCMLYADT9.svg"
+          className={active ? "activeArrow" : ""}
+          onload="SVGInject(this)"
+        />
         <h3>{upvotes}</h3>
       </VoteButton>
       <Description>
@@ -197,7 +209,7 @@ const Product = ({
       </Description>
       <div className="mobile-product-info">
         <VoteButton active={active ? "true" : ""} onClick={handleVote}>
-          <StyledArrow active={active ? "true" : ""} />
+          <StyledArrow src="https://www.reshot.com/preview-assets/icons/EUCMLYADT9/arrow-chevron-down-EUCMLYADT9.svg" className={active ? "activeArrow" : ""} />
           <h3>{upvotes}</h3>
         </VoteButton>
         <CommentLength>
