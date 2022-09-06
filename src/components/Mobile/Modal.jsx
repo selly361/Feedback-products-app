@@ -16,30 +16,35 @@ const StyledModal = styled(motion.aside)`
       align-items: center;
       right: 0;
       height: 0;
+      top: 0;
       bottom: 0;
       width: 60vw;
       height: 100vh;
       background-color: white;
       z-index: 50;
-      gap: 1rem;
-      padding-top: 8rem;
       background-color: #f7f8fd;
+      justify-content: center;
+    }
+
+    .wrapper {
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
     }
   }
 `;
 
 const MiddleSection = styled(SharedBottomSection)`
-  width: 80%;
+  width: 100%;
 `;
 
 const TopSection = styled(SharedMiddleSection)`
-  width: 80%;
+  width: 100%;
 `;
 
 const OverLayStyle = styled(motion.div)`
   display: none;
-  transition: 1s opacity;
-  opacity: 0;
 
   @media (max-width: 600px) {
     & {
@@ -161,8 +166,9 @@ const Modal = ({ setOpen }) => {
   
   return (
     <>
-      <StyledModal>
-        <TopSection>
+      <StyledModal initial={{ x: "100%", opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: "100%", opacity: 0 }}>
+          <div className="wrapper">
+          <TopSection>
           <FilterButton
             className={filter.category == "all" ? "active" : ""}
             onClick={(e) => {
@@ -250,8 +256,9 @@ const Modal = ({ setOpen }) => {
             </LiveStatus>
           </StatusContainer>
         </MiddleSection>
+          </div>
       </StyledModal>
-      <OverLayStyle initial={{opacity: 0}} animate={{ opacity: 0.5 }} onClick={() => setOpen(false)} />
+      <OverLayStyle initial={{opacity: 0}} animate={{ opacity: 0.5 }} exit={{ opacity: 0 }} onClick={() => setOpen(false)} />
     </>
   );
 };

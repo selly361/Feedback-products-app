@@ -15,7 +15,7 @@ const options = [
 ];
 
 export const StyledForm = styled.form`
-  width: 95%;
+  width: 90%;
   display: flex;
   flex-flow: column;
   justify-content: space-evenly;
@@ -55,6 +55,7 @@ export const FeedBackTitleInput = styled.input`
   padding: 0 20px;
   font-size: 1.1rem;
   color: #647196;
+  border: 1px solid black;
 
   &:focus,
   &:hover {
@@ -86,7 +87,7 @@ export const ButtonContainer = styled.div`
     font-size: 1rem;
     color: #f2f4ff;
     font-weight: bold;
-    padding: 0.7rem 0.8rem;
+    padding: 0.8rem 0.9rem;
     border-radius: 10px;
     cursor: pointer;
   }
@@ -143,7 +144,7 @@ const ProductForm = () => {
     productRequests.push(newProduct);
 
     setProductsData(copy);
-    sessionStorage.setItem("products", JSON.stringify(copy))
+    localStorage.setItem("products", JSON.stringify(copy))
     handleFilteredData()
     Navigate(-1)
   };

@@ -6,7 +6,7 @@ const Container = styled.div``;
 
 const CommentsContainer = styled.div`
   display: flex;
-  gap: 1.5rem;
+  gap: 2rem;
 `;
 
 const RepliesWrapper = styled.div`
@@ -47,7 +47,7 @@ const CommentDetails = styled.div`
   display: flex;
   flex-flow: column;
   width: 100%;
-  gap: 0.5rem;
+  gap: 1rem;
   font-size: 0.9rem;
 `;
 
@@ -84,11 +84,13 @@ const UserComment = styled.div`
 
 const CommentContent = styled.p`
   color: #647196;
+  width: 100%;
 
   span {
     color: #ad1fea;
     font-weight: 700;
   }
+
 `;
 
 const ReplyCommentForm = styled.form`
@@ -136,6 +138,25 @@ const ReplyCommentForm = styled.form`
       cursor: pointer;
     }
   }
+
+  @media (max-width: 400px){
+    & {
+      margin-top: 2rem;
+      padding: .5rem;
+      margin-left: 0.2rem;
+      gap: 1rem;
+      flex-flow: column;
+    }
+
+    textarea {
+      width: 100%;
+    }
+
+    button {
+      width: 30%;
+    }
+
+  }
 `;
 
 const Comment = ({
@@ -170,7 +191,7 @@ const Comment = ({
     });
 
     setProductsData(copy);
-    sessionStorage.setItem("products", JSON.stringify(copy));
+    localStorage.setItem("products", JSON.stringify(copy));
     handleFilteredData();
     setReplyToComment(false);
   };

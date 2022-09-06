@@ -1,12 +1,14 @@
-import { Route,Routes,useLocation } from "react-router-dom";
-import FeedBackContextWrapper from "./Context/FeedBackContext";
-import styled,{ createGlobalStyle } from "styled-components";
+import { Route, Routes, useLocation } from "react-router-dom";
+import FeedBackContextWrapper, {
+  FeedbacksProvider,
+} from "./Context/FeedBackContext";
+import styled, { createGlobalStyle } from "styled-components";
 import AddFeedBackPage from "./pages/AddFeedBack/Add";
 import ProductPage from "./pages/ProductPage/ProductPage";
 import { AnimatePresence } from "framer-motion";
 import EditFeedBackPage from "./pages/EditFeedBack/Edit";
 import Home from "./pages/home/Home";
-
+import { useContext } from "react";
 
 function App() {
   const Location = useLocation();
@@ -18,7 +20,13 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/add" element={<AddFeedBackPage />} />
           <Route path="/edit/:id" element={<EditFeedBackPage />} />
-          <Route path="/:id" element={<ProductPage />} />
+          <Route
+            path="/:id"
+            element={
+              <ProductPage
+              />
+            }
+          />
         </Routes>
       </AnimatePresence>
     </FeedBackContextWrapper>
@@ -76,7 +84,7 @@ a, a:active, button, button:active, input, form, fieldset {
 }
 
 
-@media (max-width: 1000px){
+@media (max-width: 600px){
   html {
     font-size: 13px;
 

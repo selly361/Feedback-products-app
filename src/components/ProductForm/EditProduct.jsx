@@ -106,7 +106,7 @@ const CancelButton = styled.button`
   border-radius: 10px;
   cursor: pointer;
   height: 40px;
-  padding: 0 0.4rem;
+  padding: .2rem 0.8rem;
 
   background-color: #3a4374;
 
@@ -189,7 +189,7 @@ const EditProduct = ({
     copy.productRequests[index] = updatedProduct;
 
     setProductsData(copy);
-    sessionStorage.setItem("products", JSON.stringify(copy));
+    localStorage.setItem("products", JSON.stringify(copy));
     handleFilteredData();
     Navigate(-1);
   };
@@ -199,7 +199,7 @@ const EditProduct = ({
 
     copy.productRequests = copy.productRequests.filter((p) => p.id !== id);
     setProductsData(copy);
-    sessionStorage.setItem("products", JSON.stringify(copy));
+    localStorage.setItem("products", JSON.stringify(copy));
     handleFilteredData();
     Navigate("/");
   };

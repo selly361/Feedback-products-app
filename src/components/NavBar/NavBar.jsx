@@ -48,6 +48,13 @@ const TopSection = styled.section`
      display: none;
     }
   }
+
+  @media (min-width: 1000px){
+    & {
+      height: 13vh;
+
+    }
+  }
 `;
 
 export const SharedMiddleSection = styled.section`

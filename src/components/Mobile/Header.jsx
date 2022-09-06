@@ -75,7 +75,7 @@ const Header = () => {
           </div>
         </nav>
       </StyledHeader>
-      <AnimatePresence>{open && <Modal setOpen={setOpen} />}</AnimatePresence>
+      <AnimatePresence mode="wait">{open && <Modal setOpen={setOpen} />}</AnimatePresence>
     </Fragment>
   );
 };

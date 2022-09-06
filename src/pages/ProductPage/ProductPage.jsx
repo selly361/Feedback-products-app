@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import styled from "styled-components";
 import { FeedbacksProvider } from "../../Context/FeedBackContext";
 import { AddFeedBack } from "../../components/Products/ProductHeader/ProductHeader";
@@ -25,13 +25,12 @@ const StyledProductPage = styled.div`
   min-height: 90;
   gap: 2rem;
 
-
-  @media (max-width: 1000px){
+  @media (max-width: 1000px) {
     width: 90vw;
   }
 
-  @media (max-width: 700px){
-    width: 97vw;
+  @media (max-width: 700px) {
+    width: 93vw;
   }
 `;
 
@@ -42,8 +41,22 @@ const TopSection = styled.section`
   align-items: center;
 `;
 
-const EditFeedbackButton = styled(AddFeedBack)`
+const EditFeedbackButton = styled(Link)`
+  font-size: 1rem;
+  padding: 0.6rem 1rem;
   background-color: #4661e6;
+  border-radius: 10px;
+  color: #f2f4ff;
+  font-weight: bold;
+  cursor: pointer;
+
+  &:active {
+    color: #f2f4ff;
+  }
+
+  &:hover {
+    background-color: #c75af6;
+  }
 
   &:hover {
     background-color: #7c91f9;
@@ -65,7 +78,7 @@ const CommentContainer = styled.div`
     padding-bottom: 4rem;
   }
 
-  @media (max-width: 800px){
+  @media (max-width: 800px) {
     padding: 1rem;
   }
 `;
@@ -122,6 +135,12 @@ const AddCommentForm = styled.form`
       outline: none;
     }
   }
+
+  @media (max-width: 500px) {
+    & {
+      padding: 0.5rem;
+    }
+  }
 `;
 
 const NumberOfComments = styled.h2`
@@ -130,14 +149,16 @@ const NumberOfComments = styled.h2`
 `;
 
 const ProductPage = () => {
-  const { productsData, setProductsData, handleFilteredData } =
-    useContext(FeedbacksProvider);
+  const { productsData, setProductsData, handleFilteredData } = useContext(FeedbacksProvider);
   const { id } = useParams();
 
   let copy = productsData;
 
   let productDetails = copy.productRequests.find((p) => p.id === id);
+  let comments = productDetails?.comments;
   const [content, setContent] = useState("");
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -154,53 +175,54 @@ const ProductPage = () => {
       });
 
     setProductsData(copiedProductsData);
-    sessionStorage.setItem("products", JSON.stringify(copiedProductsData));
+    localStorage.setItem("products", JSON.stringify(copiedProductsData));
     handleFilteredData();
   };
 
-  return (
-    <Body
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-    >
-      <StyledProductPage>
-        <TopSection>
-          <BackButton />
-          <EditFeedbackButton to={`/edit/${id}`}>
-            Edit Feedback
-          </EditFeedbackButton>
-        </TopSection>
-        <Product {...productDetails} hover={false} />
-        <CommentContainer>
-          <NumberOfComments>
-            {productDetails.comments.length} Comments
-          </NumberOfComments>
-          {productDetails &&
-            productDetails.comments.map((comment) => (
-              <Comment
-                productId={id}
-                productsData={productsData}
-                setProductsData={setProductsData}
-                handleFilteredData={handleFilteredData}
-                comment={comment}
-              />
-            ))}
-        </CommentContainer>
-        <AddCommentForm onSubmit={handleSubmit}>
-          <h4>Add Comment</h4>
-          <textarea
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
-          <div>
-            <h5>255 characters left</h5>
-            <button>Post Comment</button>
-          </div>
-        </AddCommentForm>
-      </StyledProductPage>
-    </Body>
-  );
+    return  (
+      <Body
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        <StyledProductPage>
+        
+          <TopSection>
+            <BackButton />
+            <EditFeedbackButton to={`/edit/${id}`}>
+              Edit Feedback
+            </EditFeedbackButton>
+          </TopSection>
+          <Product {...productDetails} hover={false} />
+          <CommentContainer>
+            <NumberOfComments>
+              {comments.length} Comments
+            </NumberOfComments>
+            {
+             comments.map((comment) => (
+                <Comment
+                  productId={id}
+                  productsData={productsData}
+                  setProductsData={setProductsData}
+                  handleFilteredData={handleFilteredData}
+                  comment={comment}
+                />
+              ))}
+          </CommentContainer>
+          <AddCommentForm onSubmit={handleSubmit}>
+            <h4>Add Comment</h4>
+            <textarea
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+            />
+            <div>
+              <h5>255 characters left</h5>
+              <button>Post Comment</button>
+            </div>
+          </AddCommentForm>
+        </StyledProductPage>
+      </Body>
+    )
 };
 
 export default ProductPage;

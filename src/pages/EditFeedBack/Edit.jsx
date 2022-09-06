@@ -7,7 +7,7 @@ import { FeedbacksProvider } from "../../Context/FeedBackContext";
 import { StyledMain } from "../home/Home";
 
 
-export const Body = styled.main`
+export const Body = styled(motion.main)`
   height: 100vh;
   display: flex;
   min-height: none;

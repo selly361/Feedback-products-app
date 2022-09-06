@@ -12,9 +12,9 @@ const Replies = styled.div`
   gap: 1.5rem;
   width: 90%;
 
-  @media (max-width: 800px){
+  @media (max-width: 500px){
     gap: 1rem;
-    width: 95%;
+    width: 100%;
   }
 `;
 
@@ -133,6 +133,15 @@ const ReplyToReplyCommentForm = styled.form`
       cursor: pointer;
     }
   }
+
+  @media (max-width: 500px){
+    & {
+      margin-top: 1rem;
+      width: 100%;
+      margin-left: .5rem;
+      padding: .4rem;
+    }
+  }
 `;
 
 const ReplyToReply = ({
@@ -157,7 +166,7 @@ const ReplyToReply = ({
       user: productsData.currentUser,
     });
 
-    sessionStorage.setItem("products", JSON.stringify(copy))
+    localStorage.setItem("products", JSON.stringify(copy))
     setProductsData(copy)
     handleFilteredData()
     setReplyToReply(false)

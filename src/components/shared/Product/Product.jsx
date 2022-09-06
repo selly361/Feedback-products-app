@@ -154,7 +154,7 @@ const Product = ({
 
     product.active ? (product.upvotes += 1) : (product.upvotes -= 1);
 
-    sessionStorage.setItem("products", JSON.stringify(copy));
+    localStorage.setItem("products", JSON.stringify(copy));
     setProductsData(copy);
     handleFilteredData();
   };
