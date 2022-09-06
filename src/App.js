@@ -9,7 +9,7 @@ import { AnimatePresence } from "framer-motion";
 import EditFeedBackPage from "./pages/EditFeedBack/Edit";
 import Home from "./pages/home/Home";
 import { useContext } from "react";
-import RoadMapPage from "./pages/RoadMap/RoadMapPage";
+import RoadMapPage from "./pages/RoadMapPage/RoadMapPage";
 
 function App() {
   const Location = useLocation();

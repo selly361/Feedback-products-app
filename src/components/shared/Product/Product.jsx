@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { ReactComponent as ArrowIcon } from "../../../assets/icons/arrow-icon.svg";
 import { ReactComponent as CommentIcon } from "../../../assets/icons/comment-icon.svg";
 import { FeedbacksProvider } from "../../../Context/FeedBackContext";
 import { motion } from "framer-motion";
+import VoteButton from "./VoteButton";
 
 const StyledProduct = styled(motion.div)`
   display: flex;
@@ -30,7 +30,7 @@ const StyledProduct = styled(motion.div)`
   @media (max-width: 1000px) {
     & {
       flex-flow: column;
-      gap: 1rem;
+      gap: 1.5rem;
     }
 
     .mobile-product-info {
@@ -39,36 +39,9 @@ const StyledProduct = styled(motion.div)`
       justify-content: space-between;
     }
 
-    .vote,
     .comment-length {
       display: none;
     }
-  }
-`;
-
-const VoteButton = styled.button`
-  background-color: ${(props) => (props.active ? "#4661e6" : "#f2f4ff")};
-  border-radius: 8px;
-  display: flex;
-  flex-flow: column;
-  justify-content: space-around;
-  align-items: center;
-  width: 38px;
-  height: 47px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${(props) => (props.active ? "#4661e6" : "#cfd7ff")};
-  }
-
-  &:hover, &:active {
-    outline: 2px dashed ${(props) => (props.active ? "#4661e6" : "#cfd7ff")};
-
-  }
-
-  h3 {
-    color: ${(props) => (props.active ? "#fff" : "#373f68")};
-    font-weight: 700;
   }
 `;
 
@@ -76,11 +49,13 @@ const StyledArrow = styled.img`
   transition: 1s transform;
   height: 20px;
   transform: rotate(180deg);
-  filter: invert(42%) sepia(87%) saturate(3459%) hue-rotate(218deg) brightness(90%) contrast(100%);
+  filter: invert(42%) sepia(87%) saturate(3459%) hue-rotate(218deg)
+    brightness(90%) contrast(100%);
 
   &.activeArrow {
     transform: rotate(0);
-    filter: invert(97%) sepia(31%) saturate(787%) hue-rotate(179deg) brightness(100%) contrast(102%);
+    filter: invert(97%) sepia(31%) saturate(787%) hue-rotate(179deg)
+      brightness(100%) contrast(102%);
   }
 `;
 
@@ -149,20 +124,6 @@ const Product = ({
 
   const Navigate = useNavigate();
 
-  const handleVote = (e) => {
-    e.stopPropagation();
-    let copy = productsData;
-
-    let product = copy.productRequests.find((product) => product.id === id);
-    product.active = !product.active;
-
-    product.active ? (product.upvotes += 1) : (product.upvotes -= 1);
-
-    sessionStorage.setItem("products", JSON.stringify(copy));
-    setProductsData(copy);
-    handleFilteredData();
-  };
-
   const animation = {
     hidden: {
       opacity: 0,
@@ -190,28 +151,14 @@ const Product = ({
       onClick={(e) => Navigate(`/${id}`)}
       hover={hover ? "true" : ""}
     >
-      <VoteButton
-        className="vote"
-        active={active ? "true" : ""}
-        onClick={handleVote}
-      >
-        <StyledArrow
-          src="https://www.reshot.com/preview-assets/icons/EUCMLYADT9/arrow-chevron-down-EUCMLYADT9.svg"
-          className={active ? "activeArrow" : ""}
-          onload="SVGInject(this)"
-        />
-        <h3>{upvotes}</h3>
-      </VoteButton>
+      <VoteButton removeIcon="set-display-none" active={active} upvotes={upvotes} id={id} />
       <Description>
         <h2>{title}</h2>
         <p>{description}</p>
         <h3>{category}</h3>
       </Description>
       <div className="mobile-product-info">
-        <VoteButton active={active ? "true" : ""} onClick={handleVote}>
-          <StyledArrow src="https://www.reshot.com/preview-assets/icons/EUCMLYADT9/arrow-chevron-down-EUCMLYADT9.svg" className={active ? "activeArrow" : ""} />
-          <h3>{upvotes}</h3>
-        </VoteButton>
+      <VoteButton active={active} upvotes={upvotes} id={id} />
         <CommentLength>
           <CommentIcon />
           <h3>{comments && comments.length}</h3>

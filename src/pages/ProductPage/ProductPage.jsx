@@ -162,7 +162,7 @@ const ProductPage = () => {
   let copy = productsData;
 
   let productDetails = copy.productRequests.find((p) => p.id === id);
-  let comments = productDetails?.comments;
+  let comments = productDetails.comments;
   const [content, setContent] = useState("");
   const [charsLeft, setCharsLeft] = useState(225);
 
@@ -211,7 +211,7 @@ const ProductPage = () => {
         <Product {...productDetails} hover={false} />
         <CommentContainer>
           <NumberOfComments>{comments.length} Comments</NumberOfComments>
-          {comments.map((comment) => (
+          {productsData.productRequests.length && comments.map((comment) => (
             <Comment
               productId={id}
               productsData={productsData}

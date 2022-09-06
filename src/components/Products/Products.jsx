@@ -90,8 +90,8 @@ const Products = () => {
              <div className="products-wrap">
              {filteredData.length ?
                 filteredData.map((data, index) => (
-                <DelayAnimationChildren delay={100 * index}>
-                  <Product key={data.id} {...data} hover={true} />
+                <DelayAnimationChildren key={data.id} delay={100 * index}>
+                  <Product {...data} hover={true} />
                 </DelayAnimationChildren>
               )):  (
 
