@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -5,7 +6,7 @@ import RoadMap from "../../components/RoadMap/RoadMap";
 import BackButton from "../../components/shared/BackButton/BackButton";
 import { FeedbacksProvider } from "../../Context/FeedBackContext";
 
-const Body = styled.main`
+const Body = styled(motion.main)`
   min-height: 100vh;
   width: 100vw;
   display: flex;
@@ -104,7 +105,7 @@ const Details = styled.div`
     display: flex;
     align-items: center;
     border-bottom: 2px solid transparent;
-    width: 105%; 
+    width: 105%;
 
     &:hover {
       cursor: pointer;
@@ -152,7 +153,11 @@ const RoadMapPage = () => {
 
   return (
     <>
-      <Body>
+      <Body
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
         <Container>
           <RoadMapNavBar>
             <nav>
@@ -173,12 +178,20 @@ const RoadMapPage = () => {
               </h3>
             </Details>
             <Details>
-              <h3 className={selected[0].status + "2"} onClick={() => setSelected(inProgress)}>
+              <h3
+                className={selected[0].status + "2"}
+                onClick={() => setSelected(inProgress)}
+              >
                 In-Progress ({inProgress.length})
               </h3>
             </Details>
             <Details>
-              <h3 className={selected[0].status + "3"} onClick={() => setSelected(live)}>Live ({live.length})</h3>
+              <h3
+                className={selected[0].status + "3"}
+                onClick={() => setSelected(live)}
+              >
+                Live ({live.length})
+              </h3>
             </Details>
           </MobileNavBar>
           <br />
@@ -201,7 +214,11 @@ const RoadMapPage = () => {
               <RoadMap items={live} setItems={setLive} statusName="Live" />
             ) : null}
           </RoadMapContainer>
-          <RoadMap className="mobile-version" items={selected} setItems={setSelected} />
+          <RoadMap
+            className="mobile-version"
+            items={selected}
+            setItems={setSelected}
+          />
         </Container>
       </Body>
     </>
